@@ -1,0 +1,35 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Anno="http://schemas.microsoft.com/expression/blend/extensions/annotations/2008" xmlns:local="clr-namespace:ClinImIm_WindowsClient_PrototypeScreens" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="Import_Name"
+	mc:Ignorable="d Anno"
+	x:Class="ClinImIm_WindowsClient_PrototypeScreens.Import"
+	Width="900" Height="550">
+
+	<Anno:AnnotationManager.Annotations>
+		<Anno:Annotation AuthorInitials="n" Author="nootn" Left="325" SerialNumber="1" Top="407" Timestamp="12/20/2011 00:46:46" Text="Import kicks off the &quot;import&quot; process.  That is pluggable via MEF.&#xd;&#xa;&#xd;&#xa;The built in one that will come with the open source software will allow a configurable UNC path and the images will be saved under that path in a folder with the Patient Identifier, then another sub folder with the date."/>
+	</Anno:AnnotationManager.Annotations>
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<local:Header Height="129" Margin="3,8,7,0" VerticalAlignment="Top"/>
+		<TextBlock Height="47" Margin="34,151,172,0" Style="{DynamicResource BasicTextBlock-Sketch}" VerticalAlignment="Top" FontSize="18.667"><Run Language="en-au" Text="# Images are about to be imported..."/><LineBreak/><Run Language="en-au" Text="# Images will not be imported..."/></TextBlock>
+		<RadioButton Content="Delete all images from device so it's ready to use for the next patient" Height="29" Margin="95,236,293,0" Style="{DynamicResource RadioButton-Sketch}" VerticalAlignment="Top" IsChecked="True" GroupName="deletetype"/>
+		<RadioButton Content="Delete selected images from device but leave the images I did not import" Margin="95,265,293,256" Style="{DynamicResource RadioButton-Sketch}" GroupName="deletetype"/>
+		<RadioButton Content="Do not delete the images I am importing" Margin="95,0,293,227" Style="{DynamicResource RadioButton-Sketch}" Height="29" VerticalAlignment="Bottom" GroupName="deletetype"/>
+		<Button Content="Import -&gt;" Height="41" Margin="325,0,246,147" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.Screen_1"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		<Button Content="&lt;- Back" Height="41" Margin="95,0,0,147" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="205">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+	</Grid>
+</UserControl>

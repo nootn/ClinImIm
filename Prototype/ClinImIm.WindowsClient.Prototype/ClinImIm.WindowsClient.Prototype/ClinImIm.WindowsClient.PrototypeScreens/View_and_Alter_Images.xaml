@@ -1,0 +1,58 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Anno="http://schemas.microsoft.com/expression/blend/extensions/annotations/2008" xmlns:local="clr-namespace:ClinImIm_WindowsClient_PrototypeScreens" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" x:Name="View_and_Alter_Images_Name"
+	mc:Ignorable="d Anno"
+	x:Class="ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images"
+	Width="900" Height="550">
+
+	<Anno:AnnotationManager.Annotations>
+		<Anno:Annotation AuthorInitials="n" Author="nootn" Left="499.833" SerialNumber="1" Top="214.833" Timestamp="12/20/2011 00:36:55" Text="The images should be grouped by date and approx time.  That is so you can easily tell if there are any &quot;old&quot; images on there (from a previous patient)&#xd;&#xa;&#xd;&#xa;Clicking on an image lets you &quot;annotate&quot; it.&#xd;&#xa;&#xd;&#xa;Images are saved onto the source device so that if it were unplugged and plugged back in the changes are there."/>
+		<Anno:Annotation AuthorInitials="n" Author="nootn" Left="230" SerialNumber="2" Top="349" Timestamp="12/20/2011 00:48:44" Text="Deletes any selected images.. I guess it should have a confirm box"/>
+		<Anno:Annotation AuthorInitials="n" Author="nootn" Left="428" SerialNumber="3" Top="349" Timestamp="12/20/2011 00:48:42" Text="Imports any selected images"/>
+		<Anno:Annotation AuthorInitials="n" Author="nootn" Left="629" SerialNumber="4" Top="349" Timestamp="12/20/2011 00:48:40" Text="Imports all available images"/>
+	</Anno:AnnotationManager.Annotations>
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<local:Header Height="129" Margin="3,8,7,0" VerticalAlignment="Top"/>
+		<Image Margin="31,162,0,257" Source="bowen.jpg" Stretch="Fill" HorizontalAlignment="Left" Width="192.785">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseLeftButtonDown">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.Annotate_Image"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Image>
+		<Image Margin="257,162,446.5,257" Source="skin_cancer_5.gif" Stretch="Fill">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseLeftButtonDown">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.Annotate_Image"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Image>
+		<CheckBox Content="" HorizontalAlignment="Left" Margin="40,268,0,257" Style="{DynamicResource CheckBox-Sketch}" Width="54"/>
+		<CheckBox Content="" HorizontalAlignment="Left" Margin="267,268,0,257" Style="{DynamicResource CheckBox-Sketch}" Width="54"/>
+		<Button Content="Delete Selected" HorizontalAlignment="Left" Height="31" Margin="230,0,0,205" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Width="183.785"/>
+		<Button Content="Import Selected" Height="31" Margin="428,0,288.215,205" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.Import"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		<Button Content="Import All" Height="31" Margin="0,0,87.215,205" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="183.785">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.Import"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		<Button Content="&lt;- Back" HorizontalAlignment="Left" Height="31" Margin="31,0,0,205" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" Width="183.785">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.Patient_Select"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+	</Grid>
+</UserControl>

@@ -1,0 +1,25 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="ClinImIm_WindowsClient_PrototypeScreens.Header"
+	x:Name="UserControl"
+	d:DesignWidth="890" d:DesignHeight="129">
+
+	<Grid x:Name="LayoutRoot">
+		<Image HorizontalAlignment="Left" Margin="5,0,0,1" Source="kcmdrkonqi.png" Stretch="Fill" Width="128"/>
+		<Image Margin="0,0,1,1" Source="camera.png" Stretch="Fill" HorizontalAlignment="Right" Width="128"/>
+		<Path Data="M4,136 L892,136" Fill="{DynamicResource BaseBackground-Sketch}" Height="2" Stretch="Fill" Stroke="{DynamicResource BaseBorder-Sketch}" StrokeThickness="2" StrokeLineJoin="Round" VerticalAlignment="Bottom"/>
+		<TextBlock Margin="187,17,0,51" Style="{DynamicResource BasicTextBlock-Sketch}" FontSize="64" FontWeight="Bold" HorizontalAlignment="Left" Width="230" RenderTransformOrigin="0.5,0.5"><TextBlock.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform Angle="-17.159"/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</TextBlock.RenderTransform><Run Language="en-au" Text="ClinImIm"/></TextBlock>
+		<TextBlock Margin="379,54,242,35" Style="{DynamicResource BasicTextBlock-Sketch}" FontSize="32" FontStyle="Italic"><Run Language="en-au" Text="Clinical Image Importer"/></TextBlock>
+	</Grid>
+</UserControl>

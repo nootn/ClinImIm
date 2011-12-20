@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SchemaVersion="2">
+  <SketchFlowGuid>4e057313-af65-4191-94d0-2158e5e3fc11</SketchFlowGuid>
+  <StartScreen>ClinImIm_WindowsClient_PrototypeScreens.Screen_1</StartScreen>
+  <Screens>
+    <Screen>
+      <Type>Navigation</Type>
+      <ClassName>ClinImIm_WindowsClient_PrototypeScreens.Screen_1</ClassName>
+      <DisplayName>Device Select</DisplayName>
+      <FileName>Screen_1.xaml</FileName>
+      <Annotations>
+        <Annotation>
+          <Id />
+          <Text>E.g. C:\ D:\ etc - one of them should be the memory card or camera inserted</Text>
+          <Top>249</Top>
+          <Left>470</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>1</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-19T23:59:24</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>Shows the first 20sih images/videos of the selected device in thumbnails so they know if they got the right device</Text>
+          <Top>291</Top>
+          <Left>725</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>2</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-19T23:59:55</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>resets all form fields</Text>
+          <Top>462</Top>
+          <Left>171</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>3</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:00:11</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>If a device is selected, continues on to next screen</Text>
+          <Top>462</Top>
+          <Left>323</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>4</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:00:28</TimeStamp>
+        </Annotation>
+      </Annotations>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <VisualTag>0</VisualTag>
+    </Screen>
+    <Screen>
+      <Type>Navigation</Type>
+      <ClassName>ClinImIm_WindowsClient_PrototypeScreens.Patient_Select</ClassName>
+      <DisplayName>Patient Select</DisplayName>
+      <FileName>Patient_Select.xaml</FileName>
+      <Annotations>
+        <Annotation>
+          <Id />
+          <Text>The search criteria could have some default fields like this and allow someone to supply a "data source" via MEF.
+
+We could also allow the whole criteria form to be injected via MEF??</Text>
+          <Top>218.5</Top>
+          <Left>456</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>1</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:02:17</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>This shows search results.
+Again we could have some default fields and allow someone to specify the whole search result object (and/or whole result list box)??
+
+Should we allow just "Free text" entry for companies that might not have a source of truth for patients and just want to enter the patient details?</Text>
+          <Top>311.5</Top>
+          <Left>647</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>2</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:03:55</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>resets all form fields back to nothing</Text>
+          <Top>464</Top>
+          <Left>325</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>3</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:47:51</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>continues on to next screen</Text>
+          <Top>464</Top>
+          <Left>477</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>4</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:47:49</TimeStamp>
+        </Annotation>
+      </Annotations>
+      <Position>
+        <X>192</X>
+        <Y>51</Y>
+      </Position>
+      <VisualTag>0</VisualTag>
+    </Screen>
+    <Screen>
+      <Type>Navigation</Type>
+      <ClassName>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</ClassName>
+      <DisplayName>View and Alter Images</DisplayName>
+      <FileName>View_and_Alter_Images.xaml</FileName>
+      <Annotations>
+        <Annotation>
+          <Id />
+          <Text>The images should be grouped by date and approx time.  That is so you can easily tell if there are any "old" images on there (from a previous patient)
+
+Clicking on an image lets you "annotate" it.
+
+Images are saved onto the source device so that if it were unplugged and plugged back in the changes are there.</Text>
+          <Top>214.833</Top>
+          <Left>499.833</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>1</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:36:55</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>Deletes any selected images.. I guess it should have a confirm box</Text>
+          <Top>349</Top>
+          <Left>230</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>2</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:48:44</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>Imports any selected images</Text>
+          <Top>349</Top>
+          <Left>428</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>3</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:48:42</TimeStamp>
+        </Annotation>
+        <Annotation>
+          <Id />
+          <Text>Imports all available images</Text>
+          <Top>349</Top>
+          <Left>629</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>4</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:48:40</TimeStamp>
+        </Annotation>
+      </Annotations>
+      <Position>
+        <X>419</X>
+        <Y>61</Y>
+      </Position>
+      <VisualTag>0</VisualTag>
+    </Screen>
+    <Screen>
+      <Type>Navigation</Type>
+      <ClassName>ClinImIm_WindowsClient_PrototypeScreens.Annotate_Image</ClassName>
+      <DisplayName>Annotate Image</DisplayName>
+      <FileName>Annotate_Image.xaml</FileName>
+      <Annotations>
+        <Annotation>
+          <Id />
+          <Text>see http://www.codeproject.com/KB/WPF/AnnotatingAnImageInWPF.aspx
+as an example</Text>
+          <Top>472.5</Top>
+          <Left>434</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>1</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:52:49</TimeStamp>
+        </Annotation>
+      </Annotations>
+      <Position>
+        <X>392</X>
+        <Y>115</Y>
+      </Position>
+      <VisualTag>0</VisualTag>
+    </Screen>
+    <Screen>
+      <Type>Navigation</Type>
+      <ClassName>ClinImIm_WindowsClient_PrototypeScreens.Import</ClassName>
+      <DisplayName>Import</DisplayName>
+      <FileName>Import.xaml</FileName>
+      <Annotations>
+        <Annotation>
+          <Id />
+          <Text>Import kicks off the "import" process.  That is pluggable via MEF.
+
+The built in one that will come with the open source software will allow a configurable UNC path and the images will be saved under that path in a folder with the Patient Identifier, then another sub folder with the date.</Text>
+          <Top>407</Top>
+          <Left>325</Left>
+          <Author>nootn</Author>
+          <AuthorInitials>n</AuthorInitials>
+          <SerialNumber>1</SerialNumber>
+          <VisibleAtRuntime>true</VisibleAtRuntime>
+          <TimeStamp>2011-12-20T00:46:46</TimeStamp>
+        </Annotation>
+      </Annotations>
+      <Position>
+        <X>603</X>
+        <Y>10</Y>
+      </Position>
+      <VisualTag>0</VisualTag>
+    </Screen>
+  </Screens>
+  <Connections>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.Screen_1</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.Patient_Select</Target>
+      <Type>Navigation</Type>
+      <TransitionType>ZoomIn</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.Patient_Select</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</Target>
+      <Type>Navigation</Type>
+      <TransitionType>ZoomIn</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.Annotate_Image</Target>
+      <Type>Navigation</Type>
+      <TransitionType>ZoomIn</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.Annotate_Image</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</Target>
+      <Type>Navigation</Type>
+      <TransitionType>Fade</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.Import</Target>
+      <Type>Navigation</Type>
+      <TransitionType>ZoomIn</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.Import</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.Screen_1</Target>
+      <Type>Navigation</Type>
+      <TransitionType>Fade</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.Import</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</Target>
+      <Type>Navigation</Type>
+      <TransitionType>Fade</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.Patient_Select</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.Screen_1</Target>
+      <Type>Navigation</Type>
+      <TransitionType>Fade</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+    <Connection>
+      <Source>ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images</Source>
+      <Target>ClinImIm_WindowsClient_PrototypeScreens.Patient_Select</Target>
+      <Type>Navigation</Type>
+      <TransitionType>Fade</TransitionType>
+      <VisualTag>0</VisualTag>
+    </Connection>
+  </Connections>
+  <PrototypeRevision>0</PrototypeRevision>
+  <BrandingText>Microsoft SketchFlow Prototype</BrandingText>
+  <RuntimeOptions>
+    <HideNavigation>false</HideNavigation>
+    <HideFlowGraph>false</HideFlowGraph>
+    <HideAnnotationAndInk>false</HideAnnotationAndInk>
+    <DisableInking>false</DisableInking>
+    <HideDesignTimeAnnotations>false</HideDesignTimeAnnotations>
+  </RuntimeOptions>
+  <VisualTags>
+    <VisualTag>
+      <Name>Navigation</Name>
+      <Color>FF1E2AD6</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>Component</Name>
+      <Color>FF178F11</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>Yellow</Name>
+      <Color>FFFEC600</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>Orange</Name>
+      <Color>FFF06000</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>Red</Name>
+      <Color>FFCC0202</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>Violet</Name>
+      <Color>FF780099</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>Gray</Name>
+      <Color>FF6B6B6B</Color>
+    </VisualTag>
+    <VisualTag>
+      <Name>White</Name>
+      <Color>FFFFFFFF</Color>
+    </VisualTag>
+  </VisualTags>
+  <ViewState>
+    <Zoom>1</Zoom>
+    <Center>
+      <X>624</X>
+      <Y>57.8294117647059</Y>
+    </Center>
+  </ViewState>
+</Data>

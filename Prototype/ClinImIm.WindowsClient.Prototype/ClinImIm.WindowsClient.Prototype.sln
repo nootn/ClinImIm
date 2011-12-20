@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinImIm.WindowsClient.Prototype", "ClinImIm.WindowsClient.Prototype\ClinImIm.WindowsClient.Prototype.csproj", "{6cb823e7-3210-4fbc-ad28-fe4564052a38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinImIm.WindowsClient.PrototypeScreens", "ClinImIm.WindowsClient.Prototype\ClinImIm.WindowsClient.PrototypeScreens\ClinImIm.WindowsClient.PrototypeScreens.csproj", "{9ae5d1d4-7587-4b05-83cb-50ce0f638da5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CB823E7-3210-4FBC-AD28-FE4564052A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB823E7-3210-4FBC-AD28-FE4564052A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB823E7-3210-4FBC-AD28-FE4564052A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB823E7-3210-4FBC-AD28-FE4564052A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AE5D1D4-7587-4B05-83CB-50CE0F638DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AE5D1D4-7587-4B05-83CB-50CE0F638DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AE5D1D4-7587-4B05-83CB-50CE0F638DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AE5D1D4-7587-4B05-83CB-50CE0F638DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

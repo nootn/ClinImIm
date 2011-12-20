@@ -1,0 +1,27 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:pi="http://schemas.microsoft.com/prototyping/2010/interactivity" xmlns:Anno="http://schemas.microsoft.com/expression/blend/extensions/annotations/2008" x:Name="Annotate_Image_Name"
+	mc:Ignorable="d Anno"
+	x:Class="ClinImIm_WindowsClient_PrototypeScreens.Annotate_Image"
+	Width="900" Height="550">
+
+	<Anno:AnnotationManager.Annotations>
+		<Anno:Annotation AuthorInitials="n" Author="nootn" Left="434" SerialNumber="1" Top="472.5" Timestamp="12/20/2011 00:52:49" Text="see http://www.codeproject.com/KB/WPF/AnnotatingAnImageInWPF.aspx&#xd;&#xa;as an example"/>
+	</Anno:AnnotationManager.Annotations>
+
+	<Grid x:Name="LayoutRoot" Background="White">
+		<Image Source="skin_cancer_5.gif" Stretch="Fill"/>
+		<TextBox Height="26" Margin="117,8,73,0" Style="{DynamicResource BasicTextBox-Sketch}" TextWrapping="Wrap" Text="Click somewhere on the image then type your annotation here..." VerticalAlignment="Top"/>
+		<Button Content="Delete all annotations" Height="28" Margin="242,0,0,8" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="201"/>
+		<Button Content="Return to images" Height="28" Margin="447,0,252,8" Style="{DynamicResource Button-Sketch}" VerticalAlignment="Bottom">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="Click">
+					<pi:NavigateToScreenAction TargetScreen="ClinImIm_WindowsClient_PrototypeScreens.View_and_Alter_Images"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+		<TextBlock HorizontalAlignment="Right" Height="28" Margin="0,223,25,0" Style="{DynamicResource BasicTextBlock-Sketch}" VerticalAlignment="Top" Width="370" FontSize="21.333" FontWeight="Bold" Foreground="#FFF7F7F7" Background="#FF3F3F3F"><Run Language="en-au" Text="some annotation.. right click to delete or edit"/></TextBlock>
+	</Grid>
+</UserControl>
