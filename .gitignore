@@ -1,3 +1,7 @@
 bin/
 obj/
 *.suo
+*_ReSharper*
+*/TestResults/*
+*.testsettings
+*.DotSettings.user

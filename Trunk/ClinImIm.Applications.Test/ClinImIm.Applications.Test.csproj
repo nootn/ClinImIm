@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BE447CB-B13C-4A63-90A7-69E1DB934178}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClinImIm.Applications.Test</RootNamespace>
+    <AssemblyName>ClinImIm.Applications.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bddify">
+      <HintPath>..\packages\Bddify.1.11\lib\NET40\Bddify.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.3.0.0\lib\NET40\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WpfApplicationFramework">
+      <HintPath>..\lib\WpfApplicationFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationCanStartAndStop\CanBeInitialized.cs" />
+    <Compile Include="ApplicationCanStartAndStop\CanBeRun.cs" />
+    <Compile Include="ApplicationCanStartAndStop\CanBeShutdown.cs" />
+    <Compile Include="ApplicationCanStartAndStop\CanBeInitializedThenRunThenShutdown.cs" />
+    <Compile Include="Mocks\FileEnumeratorHasMoreThanMaxNumberOfFiles.cs" />
+    <Compile Include="Mocks\FileEnumeratorNoFiles.cs" />
+    <Compile Include="Mocks\MessageServiceNegative.cs" />
+    <Compile Include="Mocks\MessageServicePositive.cs" />
+    <Compile Include="SelectDriveToPreview\CancelNotConfirmDoesNotClearForm.cs" />
+    <Compile Include="SelectDriveToPreview\CannotProgressIfNoDriveIsSelected.cs" />
+    <Compile Include="TestHelper.cs" />
+    <Compile Include="Mocks\MockDispatcher.cs" />
+    <Compile Include="SelectDriveToPreview\CannotProgressIfDriveHasNoImages.cs" />
+    <Compile Include="SelectDriveToPreview\CannotGoBackOnFirstScreen.cs" />
+    <Compile Include="SelectDriveToPreview\CancelConfirmClearsForm.cs" />
+    <Compile Include="SelectDriveToPreview\SelectingDriveWithNoImagesCannotProducePreview.cs" />
+    <Compile Include="SelectDriveToPreview\SelectingDriveWithImagesCanProducePreview.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stories\ApplicationCanStartAndStop.cs" />
+    <Compile Include="Stories\SelectDriveToPreview.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bddify.ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClinImIm.Applications\ClinImIm.Applications.csproj">
+      <Project>{E4C00833-CC71-485F-B473-02564906CF62}</Project>
+      <Name>ClinImIm.Applications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClinImIm.Domain\ClinImIm.Domain.csproj">
+      <Project>{699A8C57-E5ED-477B-AD47-EA81FD2D10E9}</Project>
+      <Name>ClinImIm.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

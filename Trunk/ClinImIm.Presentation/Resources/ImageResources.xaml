@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapSource x:Key="ArrowBackImage">Images/arrow-back.png</BitmapSource>
+    <BitmapSource x:Key="ArrowNextImage">Images/arrow-next.png</BitmapSource>
+    <BitmapSource x:Key="CameraIcon">Images/camera.ico</BitmapSource>
+    <BitmapSource x:Key="CancelImage">Images/cancel.png</BitmapSource>
+
+</ResourceDictionary>
