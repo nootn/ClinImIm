@@ -70,6 +70,9 @@
     <Compile Include="Views\SelectDriveView.xaml.cs">
       <DependentUpon>SelectDriveView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectPatientView.xaml.cs">
+      <DependentUpon>SelectPatientView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SelectDriveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectPatientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
