@@ -23,7 +23,7 @@ namespace ClinImIm.Applications.ViewModels
             _model = model ?? new Patient();
         }
 
-        public Patient Model { get { return _model; } }
+        public Patient Model { get { return _model; } set { _model = value; } }
 
         public void Reset()
         {

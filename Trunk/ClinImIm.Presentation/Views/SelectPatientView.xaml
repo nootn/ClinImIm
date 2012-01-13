@@ -7,8 +7,8 @@
              xmlns:vm="clr-namespace:ClinImIm.Applications.ViewModels;assembly=ClinImIm.Applications" 
              d:DataContext="{d:DesignInstance vm:SelectDriveViewModel}"
              d:DesignHeight="300" d:DesignWidth="300"
-             HorizontalAlignment="Left" VerticalAlignment="Top">
-    <Grid>
+             HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="UserControlLoaded">
+    <Grid x:Name="HostContainer">
             
     </Grid>
 </UserControl>

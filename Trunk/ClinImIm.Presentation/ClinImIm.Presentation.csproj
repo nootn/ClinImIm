@@ -38,6 +38,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PhotoLoader">
       <HintPath>..\lib\PhotoLoader.dll</HintPath>
@@ -135,6 +143,10 @@
       <Project>{699A8C57-E5ED-477B-AD47-EA81FD2D10E9}</Project>
       <Name>ClinImIm.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClinImIm.Plugin.Contracts\ClinImIm.Plugin.Contracts.csproj">
+      <Project>{BD442DDF-6280-4562-8ACE-222380FA70F5}</Project>
+      <Name>ClinImIm.Plugin.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\camera.ico" />
@@ -148,6 +160,10 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

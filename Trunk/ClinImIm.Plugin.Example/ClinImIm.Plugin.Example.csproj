@@ -33,18 +33,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WpfApplicationFramework">
+      <HintPath>..\lib\WpfApplicationFramework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManualEntryPatientSelect.xaml.cs">
+      <DependentUpon>ManualEntryPatientSelect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="ManualEntryPatientSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClinImIm.Domain\ClinImIm.Domain.csproj">
+      <Project>{699A8C57-E5ED-477B-AD47-EA81FD2D10E9}</Project>
+      <Name>ClinImIm.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClinImIm.Plugin.Contracts\ClinImIm.Plugin.Contracts.csproj">
+      <Project>{BD442DDF-6280-4562-8ACE-222380FA70F5}</Project>
+      <Name>ClinImIm.Plugin.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(SolutionDir)ClinImIm.Plugin.Example\bin\Debug\*.* $(SolutionDir)ClinImIm.Presentation\bin\Debug\PluginsToLoad /I /Y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
