@@ -10,7 +10,12 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     {
         void GivenAValidDriveIsSelected()
         {
-            TestPreconditionHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestDataHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+        }
+
+        void AndGivenUserIsOnTheSelectDriveScreen()
+        {
+            Assert.IsTrue(ApplicationController.IsOnSelectDriveScreen);
         }
 
         void WhenUserClicksCancelAndConfirms()
@@ -21,13 +26,17 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
 
         void ThenAllFormFieldsAreCleared()
         {
-            Assert.IsTrue(string.IsNullOrWhiteSpace(ApplicationController.CurrentSelectDriveViewModel.Model.SelectedDrivePath));
-            Assert.IsTrue(ApplicationController.CurrentSelectDriveViewModel.Model.PhotoFiles.Count == 0);
+            TestNavigationHelper.EnsureAllScreensAreCleared(ApplicationController);
         }
 
         void AndThenTheFormIsInvalid()
         {
             Assert.IsTrue(!string.IsNullOrWhiteSpace(ApplicationController.CurrentSelectDriveViewModel.Model.Error));
+        }
+
+        void AndThenTheUserIsStillOnTheSelectDriveScreen()
+        {
+            TestNavigationHelper.EnsureIsOnStartScreen(ApplicationController);
         }
 
         protected override IMessageService GetMessageService()

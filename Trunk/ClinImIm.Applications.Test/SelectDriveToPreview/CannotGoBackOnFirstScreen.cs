@@ -8,8 +8,9 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     [TestClass]
     public class CannotGoBackOnFirstScreen : Stories.SelectDriveToPreview
     {
-        void GivenUserIsOnTheFirstScreenInTheApplication()
+        void GivenUserIsOnTheSelectDriveScreen()
         {
+            Assert.IsTrue(ApplicationController.IsOnSelectDriveScreen);
         }
 
         void ThenUserCannotGoBack()

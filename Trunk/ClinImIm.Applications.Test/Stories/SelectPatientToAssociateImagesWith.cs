@@ -4,6 +4,7 @@ using Bddify;
 using Bddify.Core;
 using ClinImIm.Applications.Controllers;
 using ClinImIm.Applications.Core;
+using ClinImIm.Applications.Test.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Waf.Applications.Services;
 
@@ -31,11 +32,14 @@ namespace ClinImIm.Applications.Test.Stories
             Container = CompositionHelper.GetContainer();
             CompositionHelper.ComposeContainerWithDefaults(Container);
             CompositionHelper.ComposeMessageServiceImplementation(Container, GetMessageService());
-            CompositionHelper.ComposeFileEnumeratorImplementation(Container, NSubstitute.Substitute.For<IFileEnumerator>());
+            CompositionHelper.ComposeFileEnumeratorImplementation(Container, new FileEnumeratorHasMoreThanMaxNumberOfFiles());
 
             ApplicationController = Container.GetExportedValue<IApplicationController>();
             ApplicationController.Initialize();
             ApplicationController.Run();
+
+            TestDataHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestNavigationHelper.NavigateFromSelectDriveToSelectPatient(ApplicationController);
         }
 
         protected abstract IMessageService GetMessageService();

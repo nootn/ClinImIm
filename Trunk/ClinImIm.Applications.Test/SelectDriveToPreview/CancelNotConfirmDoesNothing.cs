@@ -8,9 +8,18 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     [TestClass]
     public class CancelNotConfirmDoesNothing : Stories.SelectDriveToPreview
     {
+        private string _oldValue;
+        private string _newValue;
+
         void GivenAValidDriveIsSelected()
         {
-            TestPreconditionHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestDataHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            _oldValue = TestDataHelper.GetStringRepresentationOfObject(ApplicationController.CurrentSelectDriveViewModel.Model);
+        }
+
+        void AndGivenUserIsOnTheSelectDriveScreen()
+        {
+            Assert.IsTrue(ApplicationController.IsOnSelectDriveScreen);
         }
 
         void WhenUserClicksCancelAndDoesNotConfirm()
@@ -19,13 +28,13 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
             ApplicationController.Cancel();
         }
 
-        void ThenAllFormFieldsAreNotCleared()
+        void ThenAllFormFieldsArePreserved()
         {
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(ApplicationController.CurrentSelectDriveViewModel.Model.SelectedDrivePath));
-            Assert.IsTrue(ApplicationController.CurrentSelectDriveViewModel.Model.PhotoFiles.Count > 0);
+            _newValue = TestDataHelper.GetStringRepresentationOfObject(ApplicationController.CurrentSelectDriveViewModel.Model);
+            Assert.IsTrue(string.Equals(_oldValue, _newValue));
         }
 
-        void AndThenTheFormIsValid()
+        void AndThenTheFormIsStillValid()
         {
             Assert.IsTrue(string.IsNullOrWhiteSpace(ApplicationController.CurrentSelectDriveViewModel.Model.Error));
         }

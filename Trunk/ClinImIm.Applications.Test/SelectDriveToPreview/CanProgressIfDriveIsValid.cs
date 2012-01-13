@@ -1,15 +1,16 @@
 ﻿using System.Waf.Applications.Services;
 using ClinImIm.Applications.Core;
 using ClinImIm.Applications.Test.Mocks;
-using ClinImIm.Applications.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClinImIm.Applications.Test.SelectDriveToPreview
 {
     [TestClass]
-    public class SelectingDriveWithImagesCanProducePreview : Stories.SelectDriveToPreview
+    public class CanProgressIfDriveIsValid : Stories.SelectDriveToPreview
     {
-        void GivenAValidDriveWithImagesIsSelected()
+        private MessageServicePositive _messageService = new MessageServicePositive();
+
+        void GivenAValidDriveIsSelected()
         {
             TestDataHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
         }
@@ -19,14 +20,15 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
             Assert.IsTrue(ApplicationController.IsOnSelectDriveScreen);
         }
 
-        void ThenTheCorrectNumberOfImageFilesAreAvailableForPreview()
+        void ThenUserCanProgressToNextStep()
         {
-            Assert.IsTrue(ApplicationController.CurrentSelectDriveViewModel.Model.PhotoFiles.Count == SelectDriveViewModel.MaximumNumberOfFiles);
+            TestNavigationHelper.NavigateFromSelectDriveToSelectPatient(ApplicationController);
+            Assert.IsTrue(!_messageService.ShowErrorWasCalled);
         }
 
         protected override IMessageService GetMessageService()
         {
-            return new MessageServicePositive();
+            return _messageService;
         }
 
         protected override IFileEnumerator GetFileEnumerator()

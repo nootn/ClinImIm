@@ -5,8 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ClinImIm.Applications.Test.SelectPatientToAssociateImagesWith
 {
     [TestClass]
-    public class CancelConfirmNavigatesToStartScreen : Stories.SelectPatientToAssociateImagesWith
+    public class CanProgressIfPatientIsValid : Stories.SelectPatientToAssociateImagesWith
     {
+        private MessageServicePositive _messageService = new MessageServicePositive();
+
         void GivenAValidPatientIsSelected()
         {
             TestDataHelper.MakePatientValid(ApplicationController.CurrentSelectPatientViewModel.Model);
@@ -17,25 +19,16 @@ namespace ClinImIm.Applications.Test.SelectPatientToAssociateImagesWith
             Assert.IsTrue(ApplicationController.IsOnSelectPatientScreen);
         }
 
-        void WhenUserClicksCancelAndConfirms()
+        void ThenUserCanProgressToNextStep()
         {
-            Assert.IsTrue(ApplicationController.CanCancel());
-            ApplicationController.Cancel();
-        }
-
-        void ThenAllScreensAreCleared()
-        {
-            TestNavigationHelper.EnsureAllScreensAreCleared(ApplicationController);
-        }
-
-        void AndThenTheUserIsReturnedToTheStartScreenOfTheApplication()
-        {
-            TestNavigationHelper.EnsureIsOnStartScreen(ApplicationController);
+            TestNavigationHelper.NavigateFromSelectPatientToSelectImages(ApplicationController);
+            Assert.IsTrue(!_messageService.ShowErrorWasCalled);
         }
 
         protected override IMessageService GetMessageService()
         {
-            return new MessageServicePositive();
+            return _messageService;
         }
+
     }
 }

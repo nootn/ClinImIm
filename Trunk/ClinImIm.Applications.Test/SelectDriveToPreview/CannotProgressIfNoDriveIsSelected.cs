@@ -8,23 +8,31 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     [TestClass]
     public class CannotProgressIfNoDriveIsSelected : Stories.SelectDriveToPreview
     {
+        private MessageServicePositive _messageService = new MessageServicePositive();
+
         void GivenADriveIsNotSelected()
         {
-            TestPreconditionHelper.MakeDriveInvalidNoDriveAndNoImages(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestDataHelper.MakeDriveInvalidNoDriveAndNoImages(ApplicationController.CurrentSelectDriveViewModel.Model);
+        }
+
+        void AndGivenUserIsOnTheSelectDriveScreen()
+        {
+            Assert.IsTrue(ApplicationController.IsOnSelectDriveScreen);
         }
 
         void ThenUserCannotProgressToNextStep()
         {
-            //Assert.IsTrue(!ApplicationController.CanNext()); //TODO: this does not work due to the way the UI validates.. needs attention
+            Assert.IsTrue(ApplicationController.CanNext());
             ApplicationController.Next();
 
+            Assert.IsTrue(_messageService.ShowErrorWasCalled);
             Assert.IsTrue(!string.IsNullOrWhiteSpace(ApplicationController.CurrentSelectDriveViewModel.Model.Error));
-            Assert.IsTrue(ApplicationController.CurrentShellViewModel.ContentView == ApplicationController.CurrentSelectDriveViewModel.View);
+            Assert.IsTrue(ApplicationController.IsOnSelectDriveScreen);
         }
 
         protected override IMessageService GetMessageService()
         {
-            return new MessageServicePositive();
+            return _messageService;
         }
 
         protected override IFileEnumerator GetFileEnumerator()

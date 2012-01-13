@@ -37,6 +37,9 @@
       <HintPath>..\packages\Bddify.1.11\lib\NET40\Bddify.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.3.0.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
@@ -64,11 +67,16 @@
     <Compile Include="Mocks\FileEnumeratorNoFiles.cs" />
     <Compile Include="Mocks\MessageServiceNegative.cs" />
     <Compile Include="Mocks\MessageServicePositive.cs" />
-    <Compile Include="SelectDriveToPreview\CancelNotConfirmDoesNotClearForm.cs" />
+    <Compile Include="SelectDriveToPreview\CancelNotConfirmDoesNothing.cs" />
     <Compile Include="SelectDriveToPreview\CannotProgressIfNoDriveIsSelected.cs" />
+    <Compile Include="SelectDriveToPreview\CanProgressIfDriveIsValid.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CancelConfirmNavigatesToStartScreen.cs" />
+    <Compile Include="SelectPatientToAssociateImagesWith\CancelNotConfirmDoesNothing.cs" />
+    <Compile Include="SelectPatientToAssociateImagesWith\CanProgressIfPatientIsValid.cs" />
+    <Compile Include="SelectPatientToAssociateImagesWith\CannotProgressIfPatientIsInvalid.cs" />
     <Compile Include="Stories\SelectPatientToAssociateImagesWith.cs" />
-    <Compile Include="TestPreconditionHelper.cs" />
+    <Compile Include="TestDataHelper.cs" />
+    <Compile Include="TestNavigationHelper.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="SelectDriveToPreview\CannotProgressIfDriveHasNoImages.cs" />
     <Compile Include="SelectDriveToPreview\CannotGoBackOnFirstScreen.cs" />

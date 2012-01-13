@@ -27,6 +27,7 @@ namespace ClinImIm.Applications.Test
             batch.AddExportedValue<IDispatcher>(new MockDispatcher());
             batch.AddExportedValue(Substitute.For<IShellView>());
             batch.AddExportedValue(Substitute.For<ISelectDriveView>());
+            batch.AddExportedValue(Substitute.For<ISelectPatientView>());
             container.Compose(batch);
         }
 

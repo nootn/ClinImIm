@@ -19,9 +19,10 @@ namespace ClinImIm.Applications.Controllers
         private readonly DelegateCommand _backCommand;
         private readonly DelegateCommand _nextCommand;
         private readonly SelectDriveViewModel _selectDriveViewModel;
+        private readonly SelectPatientViewModel _selectPatientViewModel;
 
         [ImportingConstructor]
-        public ApplicationController(IMessageService messageService, ShellViewModel shellViewModel, SelectDriveViewModel selectDriveViewModel)
+        public ApplicationController(IMessageService messageService, ShellViewModel shellViewModel, SelectDriveViewModel selectDriveViewModel, SelectPatientViewModel selectPatientViewModel)
         {
             if (messageService == null) { throw new ArgumentNullException("messageService"); }
             if (shellViewModel == null) { throw new ArgumentNullException("shellViewModel"); }
@@ -30,6 +31,7 @@ namespace ClinImIm.Applications.Controllers
             _messageService = messageService;
             _shellViewModel = shellViewModel;
             _selectDriveViewModel = selectDriveViewModel;
+            _selectPatientViewModel = selectPatientViewModel;
 
             _cancelCommand = new DelegateCommand(Cancel, CanCancel);
             _backCommand = new DelegateCommand(Back, CanBack);
@@ -43,6 +45,8 @@ namespace ClinImIm.Applications.Controllers
         public ShellViewModel CurrentShellViewModel { get { return _shellViewModel; } }
 
         public SelectDriveViewModel CurrentSelectDriveViewModel { get { return _selectDriveViewModel; } }
+
+        public SelectPatientViewModel CurrentSelectPatientViewModel { get { return _selectPatientViewModel; } }
 
         public void Initialize()
         {
@@ -79,6 +83,7 @@ namespace ClinImIm.Applications.Controllers
             if (_messageService.ShowYesNoQuestion("Are you sure you want to lose all progress and start again?"))
             {
                 _selectDriveViewModel.Reset();
+                _selectPatientViewModel.Reset();
 
                 _shellViewModel.ContentView = _selectDriveViewModel.View;
                 UpdateCommandsState();
@@ -98,20 +103,44 @@ namespace ClinImIm.Applications.Controllers
 
         public bool CanNext()
         {
-            return _shellViewModel.IsValid;
+            //TODO: discuss this.  Currently you can always go next (unless you are on the last screen?) and if you have validation errors it will show a msg box.
+            //      Reasons:
+            //              1. The Select Drive screen can't currently validate that a drive has at least one image on the UI.. this may be able to be fixed
+            //              2. The errors do not currently show anywhere on the screen - if a field has an error the text is not shown, so the user could click next to see the error
+            
+
+// ReSharper disable UnusedVariable
+            var isUiValid = _shellViewModel.IsValid;
+// ReSharper restore UnusedVariable
+
+            //we still need to call "IsValid" to get the UI validation to fire, even though we don't care about the result, so just return true
+            return true;
         }
 
         public void Next()
         {
-            if (_shellViewModel.ContentView == _selectDriveViewModel.View)
+            var errorMessages = string.Empty;
+            
+            if (IsOnSelectDriveScreen)
             {
-                var errorMessage = _selectDriveViewModel.Model.Error;
-                if (string.IsNullOrWhiteSpace(errorMessage))
+                errorMessages = _selectDriveViewModel.Model.Error;
+                if (string.IsNullOrWhiteSpace(errorMessages))
                 {
-                    //todo: load next screen
-                    throw new ApplicationException("Not ready to navigate to next screen yet because it's not built!");
+                    _shellViewModel.ContentView = _selectPatientViewModel.View;
                 }
-                _messageService.ShowError(string.Format("Please fix the following validation errors then try again: {0}{0}{1}", Environment.NewLine, errorMessage));
+            }
+            else if (IsOnSelectPatientScreen)
+            {
+                errorMessages = _selectPatientViewModel.Model.Error;
+                if (string.IsNullOrWhiteSpace(errorMessages))
+                {
+                    throw new NotImplementedException("Next screen is not built yet!");
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(errorMessages))
+            {
+                _messageService.ShowError(string.Format("Please fix the following validation errors then try again: {0}{0}{1}", Environment.NewLine, errorMessages));
             }
 
             UpdateCommandsState();
@@ -129,5 +158,15 @@ namespace ClinImIm.Applications.Controllers
             if (e.PropertyName == "IsValid") { UpdateCommandsState(); }
         }
 
+
+        public bool IsOnSelectDriveScreen
+        {
+            get { return _shellViewModel.ContentView == _selectDriveViewModel.View; }
+        }
+
+        public bool IsOnSelectPatientScreen
+        {
+            get { return _shellViewModel.ContentView == _selectPatientViewModel.View; }
+        }
     }
 }

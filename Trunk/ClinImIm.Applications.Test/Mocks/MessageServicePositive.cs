@@ -7,6 +7,7 @@ namespace ClinImIm.Applications.Test.Mocks
     {
         public void ShowError(object owner, string message)
         {
+            ShowErrorWasCalled = true;
         }
 
         public void ShowMessage(object owner, string message)
@@ -26,5 +27,7 @@ namespace ClinImIm.Applications.Test.Mocks
         {
             return true;
         }
+
+        public bool ShowErrorWasCalled { get; private set; }
     }
 }
