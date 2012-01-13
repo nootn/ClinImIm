@@ -92,11 +92,16 @@ namespace ClinImIm.Applications.Controllers
 
         public bool CanBack()
         {
-            return _shellViewModel.ContentView != _selectDriveViewModel.View;
+            return !IsOnSelectDriveScreen;
         }
 
         public void Back()
         {
+            if (IsOnSelectPatientScreen)
+            {
+                _shellViewModel.ContentView = _selectDriveViewModel.View;
+            }
+
             _shellViewModel.IsLastPage = false;
             UpdateCommandsState();
         }

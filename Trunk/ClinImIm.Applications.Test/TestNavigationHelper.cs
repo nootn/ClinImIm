@@ -13,6 +13,14 @@ namespace ClinImIm.Applications.Test
             Assert.IsTrue(controller.IsOnSelectPatientScreen);
         }
 
+        internal static void NavigateFromSelectPatientToSelectDrive(IApplicationController controller)
+        {
+            Assert.IsTrue(controller.IsOnSelectPatientScreen);
+            Assert.IsTrue(controller.CanBack());
+            controller.Back();
+            Assert.IsTrue(controller.IsOnSelectDriveScreen);
+        }
+
         internal static void NavigateFromSelectPatientToSelectImages(IApplicationController controller)
         {
             Assert.IsTrue(controller.IsOnSelectPatientScreen);
