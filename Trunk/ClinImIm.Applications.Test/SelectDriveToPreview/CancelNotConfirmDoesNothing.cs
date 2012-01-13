@@ -6,11 +6,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ClinImIm.Applications.Test.SelectDriveToPreview
 {
     [TestClass]
-    public class CancelNotConfirmDoesNotClearForm : Stories.SelectDriveToPreview
+    public class CancelNotConfirmDoesNothing : Stories.SelectDriveToPreview
     {
         void GivenAValidDriveIsSelected()
         {
-            TestHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestPreconditionHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
         }
 
         void WhenUserClicksCancelAndDoesNotConfirm()

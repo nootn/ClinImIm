@@ -10,7 +10,7 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     {
         void GivenADriveIsNotSelected()
         {
-            TestHelper.MakeDriveInvalidNoDriveAndNoImages(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestPreconditionHelper.MakeDriveInvalidNoDriveAndNoImages(ApplicationController.CurrentSelectDriveViewModel.Model);
         }
 
         void ThenUserCannotProgressToNextStep()

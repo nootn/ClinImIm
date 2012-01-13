@@ -10,7 +10,7 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     {
         void GivenAValidDriveIsSelected()
         {
-            TestHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestPreconditionHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
         }
 
         void WhenUserClicksCancelAndConfirms()

@@ -28,10 +28,10 @@ namespace ClinImIm.Applications.Test.Stories
         [TestInitialize]
         public void Initialize()
         {
-            Container = TestHelper.GetContainer();
-            TestHelper.ComposeContainerWithDefaults(Container);
-            TestHelper.ComposeMessageServiceImplementation(Container, GetMessageService());
-            TestHelper.ComposeFileEnumeratorImplementation(Container, GetFileEnumerator());
+            Container = CompositionHelper.GetContainer();
+            CompositionHelper.ComposeContainerWithDefaults(Container);
+            CompositionHelper.ComposeMessageServiceImplementation(Container, GetMessageService());
+            CompositionHelper.ComposeFileEnumeratorImplementation(Container, GetFileEnumerator());
 
             ApplicationController = Container.GetExportedValue<IApplicationController>();
             ApplicationController.Initialize();

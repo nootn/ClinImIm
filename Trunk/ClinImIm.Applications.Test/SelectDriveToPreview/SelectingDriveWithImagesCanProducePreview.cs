@@ -11,7 +11,7 @@ namespace ClinImIm.Applications.Test.SelectDriveToPreview
     {
         void GivenAValidDriveWithImagesIsSelected()
         {
-            TestHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
+            TestPreconditionHelper.MakeDriveValid(ApplicationController.CurrentSelectDriveViewModel.Model);
         }
 
         void ThenTheCorrectNumberOfImageFilesAreAvailableForPreview()

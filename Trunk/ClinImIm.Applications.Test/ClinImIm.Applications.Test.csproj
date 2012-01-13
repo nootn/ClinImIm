@@ -59,13 +59,16 @@
     <Compile Include="ApplicationCanStartAndStop\CanBeRun.cs" />
     <Compile Include="ApplicationCanStartAndStop\CanBeShutdown.cs" />
     <Compile Include="ApplicationCanStartAndStop\CanBeInitializedThenRunThenShutdown.cs" />
+    <Compile Include="CompositionHelper.cs" />
     <Compile Include="Mocks\FileEnumeratorHasMoreThanMaxNumberOfFiles.cs" />
     <Compile Include="Mocks\FileEnumeratorNoFiles.cs" />
     <Compile Include="Mocks\MessageServiceNegative.cs" />
     <Compile Include="Mocks\MessageServicePositive.cs" />
     <Compile Include="SelectDriveToPreview\CancelNotConfirmDoesNotClearForm.cs" />
     <Compile Include="SelectDriveToPreview\CannotProgressIfNoDriveIsSelected.cs" />
-    <Compile Include="TestHelper.cs" />
+    <Compile Include="SelectPatientToAssociateImagesWith\CancelConfirmNavigatesToStartScreen.cs" />
+    <Compile Include="Stories\SelectPatientToAssociateImagesWith.cs" />
+    <Compile Include="TestPreconditionHelper.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="SelectDriveToPreview\CannotProgressIfDriveHasNoImages.cs" />
     <Compile Include="SelectDriveToPreview\CannotGoBackOnFirstScreen.cs" />
@@ -92,6 +95,7 @@
       <Name>ClinImIm.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,17 +1,16 @@
 ﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Linq;
+using System.Waf.Applications.Services;
 using ClinImIm.Applications.Controllers;
 using ClinImIm.Applications.Core;
 using ClinImIm.Applications.Test.Mocks;
 using ClinImIm.Applications.Views;
-using System.Waf.Applications.Services;
 using ClinImIm.Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 
 namespace ClinImIm.Applications.Test
 {
-    internal static class TestHelper
+    internal static class CompositionHelper
     {
         internal static CompositionContainer GetContainer()
         {
@@ -26,8 +25,8 @@ namespace ClinImIm.Applications.Test
             var batch = new CompositionBatch();
             batch.AddExportedValue(container);
             batch.AddExportedValue<IDispatcher>(new MockDispatcher());
-            batch.AddExportedValue(NSubstitute.Substitute.For<IShellView>());
-            batch.AddExportedValue(NSubstitute.Substitute.For<ISelectDriveView>());
+            batch.AddExportedValue(Substitute.For<IShellView>());
+            batch.AddExportedValue(Substitute.For<ISelectDriveView>());
             container.Compose(batch);
         }
 
@@ -43,26 +42,6 @@ namespace ClinImIm.Applications.Test
             var batch = new CompositionBatch();
             batch.AddExportedValue(item);
             container.Compose(batch);
-        }
-
-        internal static void MakeDriveValid(SelectedDrive item)
-        {
-            item.SelectedDrivePath = @"C:\";
-            Assert.IsTrue(string.IsNullOrWhiteSpace(item.Error), "SelectedDrive had validation errors: {0}", item.Error);
-        }
-
-        internal static void MakeDriveInvalidNoImages(SelectedDrive item)
-        {
-            item.SelectedDrivePath = @"C:\";
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(item.Error));
-            Assert.IsTrue(item.PhotoFiles.Count == 0);
-        }
-
-        internal static void MakeDriveInvalidNoDriveAndNoImages(SelectedDrive item)
-        {
-            item.SelectedDrivePath = string.Empty;
-            Assert.IsTrue(!string.IsNullOrWhiteSpace(item.Error));
-            Assert.IsTrue(item.PhotoFiles.Count == 0);
         }
     }
 }
