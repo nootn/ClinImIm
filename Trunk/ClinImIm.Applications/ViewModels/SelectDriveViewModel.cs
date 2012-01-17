@@ -26,6 +26,10 @@ namespace ClinImIm.Applications.ViewModels
         public SelectDriveViewModel(IDispatcher dispatcher, ISelectDriveView view, SelectedDrive model, IFileEnumerator fileEnumerator)
             : base(view)
         {
+            if (dispatcher == null) { throw new ArgumentNullException("dispatcher"); }
+            if (view == null) { throw new ArgumentNullException("view"); }
+            if (fileEnumerator == null) { throw new ArgumentNullException("fileEnumerator"); }
+
             _dispatcher = dispatcher;
             _model = model ?? new SelectedDrive();
             _fileEnumerator = fileEnumerator;
@@ -65,7 +69,9 @@ namespace ClinImIm.Applications.ViewModels
 
         public void Reset()
         {
-            _model = new SelectedDrive();
+            _model.SelectedDrivePath = string.Empty;
+            _model.PhotoFiles.Clear();
+            _warnings.Clear();
         }
 
         private void LoadFiles(string path)
@@ -86,11 +92,7 @@ namespace ClinImIm.Applications.ViewModels
                 foreach (var currFile in _fileEnumerator.EnumerateFiles(dir))
                 {
                     var fileName = currFile.FullName;
-                    if (fileName.EndsWith(".png", StringComparison.CurrentCultureIgnoreCase) ||
-                        fileName.EndsWith(".jpg", StringComparison.CurrentCultureIgnoreCase) ||
-                        fileName.EndsWith(".tif", StringComparison.CurrentCultureIgnoreCase) ||
-                        fileName.EndsWith(".bmp", StringComparison.CurrentCultureIgnoreCase)
-                        )
+                    if (IoHelper.IsValidImageFile(fileName))
                     {
                         _dispatcher.Dispatch(() => Model.PhotoFiles.Add(fileName));
                         if (HasEnoughFiles)

@@ -4,8 +4,131 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             xmlns:vm="clr-namespace:ClinImIm.Applications.ViewModels;assembly=ClinImIm.Applications"
+             xmlns:PhotoLoader="clr-namespace:PhotoLoader;assembly=PhotoLoader" 
+             d:DataContext="{d:DesignInstance vm:SelectImagesViewModel}"
+             HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid Margin="0,0,11,11">
+        <ListView VerticalAlignment="Stretch"
+                  x:Name="listView"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding Path=Model.AllImages, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=false, ValidatesOnDataErrors=false, NotifyOnValidationError=false}">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Gray" 
+                            MaxWidth="120"
+                            MaxHeight="120"
+                            Background="WhiteSmoke"
+                            Margin="2" 
+                            Padding="2"
+                            BorderThickness="1">
+
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Width" Value="120"/>
+                                <Setter Property="Height" Value="120"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=(PhotoLoader:Loader.IsLoading), ElementName=_thumbImage}"
+                                                       Value="False"/>
+                                            <Condition Binding="{Binding Path=(PhotoLoader:Loader.ErrorDetected), ElementName=_thumbImage}"
+                                                       Value="False"/>
+                                        </MultiDataTrigger.Conditions>
+
+                                        <Setter Property="Width" Value="Auto"/>
+                                        <Setter Property="Height" Value="Auto"/>
+                                    </MultiDataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <Grid>
+                            <CheckBox Grid.ZIndex="1" IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                            <Image x:Name="_thumbImage" Grid.ZIndex="0"
+                                   PhotoLoader:Loader.DisplayOption="Preview"
+                                   PhotoLoader:Loader.Source="{Binding FullPath}"
+                                   PhotoLoader:Loader.DisplayWaitingAnimationDuringLoading="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}, Path=DisplayAnimationDuringLoading}"
+                                   PhotoLoader:Loader.DisplayErrorThumbnailOnError="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}, Path=DisplayErrorImageOnError}">
+                            </Image>
+
+                            <Border BorderThickness="2"
+                                    BorderBrush="White" 
+                                    Height="25"
+                                    Width="100"
+                                    CornerRadius="8">
+
+                                <TextBlock VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center"
+                                   Foreground="White">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Text" Value="Loading..."/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=(PhotoLoader:Loader.ErrorDetected), ElementName=_thumbImage}"
+                                                         Value="True">
+                                                <Setter Property="Text" Value="Error"/>
+                                            </DataTrigger>
+                                        </Style.Triggers> 
+                                    </Style>
+                                </TextBlock.Style>
+                                </TextBlock>
+
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="FrameworkElement.Visibility" Value="Hidden"/>
+                                        <Setter Property="Background" Value="Black"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DisplayCustomAnimation}"
+                                                               Value="True"/>
+
+                                                    <Condition Binding="{Binding Path=(PhotoLoader:Loader.IsLoading), ElementName=_thumbImage}"
+                                                               Value="True"/>
+
+                                                </MultiDataTrigger.Conditions>
+
+                                                <Setter Property="FrameworkElement.Visibility" 
+                                                        Value="Visible"/>
+
+                                            </MultiDataTrigger>
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DisplayCustomErrorImage}"
+                                                               Value="True"/>
+
+                                                    <Condition Binding="{Binding Path=(PhotoLoader:Loader.ErrorDetected), ElementName=_thumbImage}"
+                                                               Value="True"/>
+
+                                                </MultiDataTrigger.Conditions>
+
+                                                <Setter Property="FrameworkElement.Visibility" 
+                                                    Value="Visible"/>
+
+                                                <Setter Property="Background" 
+                                                    Value="Red"/>
+
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
     </Grid>
 </UserControl>

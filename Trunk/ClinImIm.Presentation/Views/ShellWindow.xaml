@@ -46,7 +46,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button IsCancel="True" Margin="22,11,0,0" Height="20">
+                <Button  Command="{Binding CancelCommand}" Margin="22,11,0,0" Height="20">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{StaticResource CancelImage}" />

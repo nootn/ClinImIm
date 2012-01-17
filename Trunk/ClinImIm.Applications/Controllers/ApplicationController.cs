@@ -103,17 +103,13 @@ namespace ClinImIm.Applications.Controllers
 
         public void Back()
         {
-            //TODO: not sure whether to reset a screen on back or not.. will not for now.  Once decision is made, either remove these comments or uncomment them
             if (IsOnSelectPatientScreen)
             {
-                //_selectPatientViewModel.Reset();
                 _shellViewModel.ContentView = _selectDriveViewModel.View;
             }
             else if (IsOnSelectImagesScreen)
             {
-                
-                //_selectImagesViewModel.Reset();
-                _shellViewModel.ContentView = _selectDriveViewModel.View;
+                _shellViewModel.ContentView = _selectPatientViewModel.View;
             }
 
             _shellViewModel.IsLastPage = false;
@@ -145,6 +141,7 @@ namespace ClinImIm.Applications.Controllers
                 errorMessages = _selectDriveViewModel.Model.Error;
                 if (string.IsNullOrWhiteSpace(errorMessages))
                 {
+                    _selectImagesViewModel.CommenceLoadingImages(_selectDriveViewModel.Model.SelectedDrivePath);
                     _shellViewModel.ContentView = _selectPatientViewModel.View;
                 }
             }

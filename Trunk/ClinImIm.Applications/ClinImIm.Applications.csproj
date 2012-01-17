@@ -55,6 +55,7 @@
     <Compile Include="Controllers\IApplicationController.cs" />
     <Compile Include="Core\IDispatcher.cs" />
     <Compile Include="Core\IFileEnumerator.cs" />
+    <Compile Include="Core\IoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SelectImagesViewModel.cs" />
     <Compile Include="ViewModels\SelectPatientViewModel.cs" />

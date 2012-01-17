@@ -20,6 +20,8 @@ namespace ClinImIm.Applications.ViewModels
         public SelectPatientViewModel(ISelectPatientView view, Patient model)
             : base(view)
         {
+            if (view == null) { throw new ArgumentNullException("view"); }
+
             _model = model ?? new Patient();
         }
 
@@ -27,7 +29,8 @@ namespace ClinImIm.Applications.ViewModels
 
         public void Reset()
         {
-            _model = new Patient();
+            _model.Identifier = string.Empty;
+            _model.FullName = string.Empty;
         }
     }
 }

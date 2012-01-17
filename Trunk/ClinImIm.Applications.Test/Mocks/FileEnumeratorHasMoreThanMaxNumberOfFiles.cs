@@ -16,10 +16,14 @@ namespace ClinImIm.Applications.Test.Mocks
         public IEnumerable<DirectoryInfo> EnumerateDirectories(DirectoryInfo dir)
         {
             var items = new List<DirectoryInfo>();
-            for (var i = 0; i <= SelectDriveViewModel.MaximumNumberOfFiles; i++)
+            int currDirNumber;
+            int.TryParse(dir.Name, out currDirNumber);
+
+            if (currDirNumber <= SelectDriveViewModel.MaximumNumberOfFiles + 1)
             {
-                items.Add(new DirectoryInfo(string.Concat(dir.FullName, @"\", i)));   
+                items.Add(new DirectoryInfo(string.Concat(dir.FullName, @"\", currDirNumber + 1)));
             }
+
             return items;
         }
     }
