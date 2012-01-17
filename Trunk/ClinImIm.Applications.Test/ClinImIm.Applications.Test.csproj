@@ -72,11 +72,17 @@
     <Compile Include="SelectDriveToPreview\CancelNotConfirmDoesNothing.cs" />
     <Compile Include="SelectDriveToPreview\CannotProgressIfNoDriveIsSelected.cs" />
     <Compile Include="SelectDriveToPreview\CanProgressIfDriveIsValid.cs" />
+    <Compile Include="SelectImagesToDeleteOrEditOrImport\CancelConfirmNavigatesToStartScreen.cs" />
+    <Compile Include="SelectImagesToDeleteOrEditOrImport\CancelNotConfirmDoesNothing.cs" />
+    <Compile Include="SelectImagesToDeleteOrEditOrImport\CanGoBack.cs" />
+    <Compile Include="SelectImagesToDeleteOrEditOrImport\CannotProgressIfSelectedImagesAreInvalid.cs" />
+    <Compile Include="SelectImagesToDeleteOrEditOrImport\CanProgressIfValidImagesAreSelected.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CancelConfirmNavigatesToStartScreen.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CancelNotConfirmDoesNothing.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CanProgressIfPatientIsValid.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CannotProgressIfPatientIsInvalid.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CanGoBack.cs" />
+    <Compile Include="Stories\SelectImagesToDeleteOrEditOrImport.cs" />
     <Compile Include="Stories\SelectPatientToAssociateImagesWith.cs" />
     <Compile Include="TestDataHelper.cs" />
     <Compile Include="TestNavigationHelper.cs" />

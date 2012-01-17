@@ -44,9 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="WpfApplicationFramework">
-      <HintPath>..\lib\WpfApplicationFramework.dll</HintPath>
-    </Reference>
+    <Reference Include="WpfApplicationFramework, Version=2.0.0.400, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPatientSelectPlugin.cs" />

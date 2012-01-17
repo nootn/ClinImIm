@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using ClinImIm.Applications.Test.Mocks;
 using ClinImIm.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -53,6 +55,30 @@ namespace ClinImIm.Applications.Test
         {
             item.Identifier = "";
             item.FullName = "";
+            Assert.IsTrue(!String.IsNullOrWhiteSpace(item.Error));
+        }
+
+        #endregion
+
+        #region SelectedImages Methods
+
+        internal static void MakeImageSelectionValid(ImageSelection item)
+        {
+            var files = new FileEnumeratorHasMoreThanMaxNumberOfFiles();
+            foreach (var currFile in files.EnumerateFiles(new DirectoryInfo(@"C:\")))
+            {
+                item.AllImages.Add(new SelectableImage{FullPath = currFile.FullName, IsSelected = true});
+            }
+            Assert.IsTrue(String.IsNullOrWhiteSpace(item.Error));
+        }
+
+        internal static void MakeImageSelectionInvalidNoSelectedImages(ImageSelection item)
+        {
+            var files = new FileEnumeratorHasMoreThanMaxNumberOfFiles();
+            foreach (var currFile in files.EnumerateFiles(new DirectoryInfo(@"C:\")))
+            {
+                item.AllImages.Add(new SelectableImage { FullPath = currFile.FullName, IsSelected = false });
+            }
             Assert.IsTrue(!String.IsNullOrWhiteSpace(item.Error));
         }
 

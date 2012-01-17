@@ -7,7 +7,7 @@ namespace ClinImIm.Applications.Test.SelectPatientToAssociateImagesWith
     [TestClass]
     public class CannotProgressIfPatientIsInvalid : Stories.SelectPatientToAssociateImagesWith
     {
-        private MessageServicePositive _messageService = new MessageServicePositive();
+        private readonly MessageServicePositive _messageService = new MessageServicePositive();
 
         void GivenAnInvalidPatientIsSelected()
         {

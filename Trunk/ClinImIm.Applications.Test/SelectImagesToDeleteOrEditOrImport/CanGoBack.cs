@@ -2,26 +2,26 @@
 using ClinImIm.Applications.Test.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ClinImIm.Applications.Test.SelectPatientToAssociateImagesWith
+namespace ClinImIm.Applications.Test.SelectImagesToDeleteOrEditOrImport
 {
     [TestClass]
-    public class CanGoBack : Stories.SelectPatientToAssociateImagesWith
+    public class CanGoBack : Stories.SelectImagesToDeleteOrEditOrImport
     {
         private readonly MessageServicePositive _messageService = new MessageServicePositive();
 
-        void GivenAValidPatientIsSelected()
+        void GivenValidImagesAreSelected()
         {
-            TestDataHelper.MakePatientValid(ApplicationController.CurrentSelectPatientViewModel.Model);
+            TestDataHelper.MakeImageSelectionValid(ApplicationController.CurrentSelectImagesViewModel.Model);
         }
 
-        void AndGivenUserIsOnTheSelectPatientScreen()
+        void AndGivenUserIsOnTheSelectImagesScreen()
         {
-            Assert.IsTrue(ApplicationController.IsOnSelectPatientScreen);
+            Assert.IsTrue(ApplicationController.IsOnSelectImagesScreen);
         }
 
         void ThenUserCanProgressToThePreviousStep()
         {
-            TestNavigationHelper.NavigateFromSelectPatientToSelectDrive(ApplicationController);
+            TestNavigationHelper.NavigateFromSelectImagesToSelectPatient(ApplicationController);
             Assert.IsTrue(!_messageService.ShowErrorWasCalled);
         }
 

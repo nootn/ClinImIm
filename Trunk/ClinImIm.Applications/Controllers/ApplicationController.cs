@@ -20,18 +20,21 @@ namespace ClinImIm.Applications.Controllers
         private readonly DelegateCommand _nextCommand;
         private readonly SelectDriveViewModel _selectDriveViewModel;
         private readonly SelectPatientViewModel _selectPatientViewModel;
+        private readonly SelectImagesViewModel _selectImagesViewModel;
 
         [ImportingConstructor]
-        public ApplicationController(IMessageService messageService, ShellViewModel shellViewModel, SelectDriveViewModel selectDriveViewModel, SelectPatientViewModel selectPatientViewModel)
+        public ApplicationController(IMessageService messageService, ShellViewModel shellViewModel, SelectDriveViewModel selectDriveViewModel, SelectPatientViewModel selectPatientViewModel, SelectImagesViewModel selectImagesViewModel)
         {
             if (messageService == null) { throw new ArgumentNullException("messageService"); }
             if (shellViewModel == null) { throw new ArgumentNullException("shellViewModel"); }
             if (selectDriveViewModel == null) { throw new ArgumentNullException("selectDriveViewModel"); }
+            if (selectImagesViewModel == null) { throw new ArgumentNullException("selectImagesViewModel"); }
 
             _messageService = messageService;
             _shellViewModel = shellViewModel;
             _selectDriveViewModel = selectDriveViewModel;
             _selectPatientViewModel = selectPatientViewModel;
+            _selectImagesViewModel = selectImagesViewModel;
 
             _cancelCommand = new DelegateCommand(Cancel, CanCancel);
             _backCommand = new DelegateCommand(Back, CanBack);
@@ -47,6 +50,8 @@ namespace ClinImIm.Applications.Controllers
         public SelectDriveViewModel CurrentSelectDriveViewModel { get { return _selectDriveViewModel; } }
 
         public SelectPatientViewModel CurrentSelectPatientViewModel { get { return _selectPatientViewModel; } }
+
+        public SelectImagesViewModel CurrentSelectImagesViewModel { get { return _selectImagesViewModel; } }
 
         public void Initialize()
         {
@@ -84,6 +89,7 @@ namespace ClinImIm.Applications.Controllers
             {
                 _selectDriveViewModel.Reset();
                 _selectPatientViewModel.Reset();
+                _selectImagesViewModel.Reset();
 
                 _shellViewModel.ContentView = _selectDriveViewModel.View;
                 UpdateCommandsState();
@@ -97,8 +103,16 @@ namespace ClinImIm.Applications.Controllers
 
         public void Back()
         {
+            //TODO: not sure whether to reset a screen on back or not.. will not for now.  Once decision is made, either remove these comments or uncomment them
             if (IsOnSelectPatientScreen)
             {
+                //_selectPatientViewModel.Reset();
+                _shellViewModel.ContentView = _selectDriveViewModel.View;
+            }
+            else if (IsOnSelectImagesScreen)
+            {
+                
+                //_selectImagesViewModel.Reset();
                 _shellViewModel.ContentView = _selectDriveViewModel.View;
             }
 
@@ -139,6 +153,14 @@ namespace ClinImIm.Applications.Controllers
                 errorMessages = _selectPatientViewModel.Model.Error;
                 if (string.IsNullOrWhiteSpace(errorMessages))
                 {
+                    _shellViewModel.ContentView = _selectImagesViewModel.View;
+                }
+            }
+            else if (IsOnSelectImagesScreen)
+            {
+                errorMessages = _selectImagesViewModel.Model.Error;
+                if (string.IsNullOrWhiteSpace(errorMessages))
+                {
                     throw new NotImplementedException("Next screen is not built yet!");
                 }
             }
@@ -172,6 +194,11 @@ namespace ClinImIm.Applications.Controllers
         public bool IsOnSelectPatientScreen
         {
             get { return _shellViewModel.ContentView == _selectPatientViewModel.View; }
+        }
+
+        public bool IsOnSelectImagesScreen
+        {
+            get { return _shellViewModel.ContentView == _selectImagesViewModel.View; }
         }
     }
 }

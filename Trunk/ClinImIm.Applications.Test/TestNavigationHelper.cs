@@ -26,7 +26,23 @@ namespace ClinImIm.Applications.Test
             Assert.IsTrue(controller.IsOnSelectPatientScreen);
             Assert.IsTrue(controller.CanNext());
             controller.Next();
-            Assert.Inconclusive("Next screen is not built yet");
+            Assert.IsTrue(controller.IsOnSelectImagesScreen);
+        }
+
+        internal static void NavigateFromSelectImagesToSelectPatient(IApplicationController controller)
+        {
+            Assert.IsTrue(controller.IsOnSelectImagesScreen);
+            Assert.IsTrue(controller.CanBack());
+            controller.Back();
+            Assert.IsTrue(controller.IsOnSelectPatientScreen);
+        }
+
+        internal static void NavigateFromSelectImagesToImportImages(IApplicationController controller)
+        {
+            Assert.IsTrue(controller.IsOnSelectImagesScreen);
+            Assert.IsTrue(controller.CanNext());
+            controller.Next();
+            Assert.Inconclusive("Next screen does not exist yet");
         }
 
         internal static void EnsureAllScreensAreCleared(IApplicationController controller)
@@ -36,7 +52,11 @@ namespace ClinImIm.Applications.Test
             Assert.IsTrue(controller.CurrentSelectDriveViewModel.Model.PhotoFiles.Count == 0);
 
             //Select Patient Screen
+            Assert.IsTrue(string.IsNullOrWhiteSpace(controller.CurrentSelectPatientViewModel.Model.Identifier));
+            Assert.IsTrue(string.IsNullOrWhiteSpace(controller.CurrentSelectPatientViewModel.Model.FullName));
 
+            //Select Images Screen
+            Assert.IsTrue(controller.CurrentSelectImagesViewModel.Model.AllImages.Count == 0);
         }
 
         internal static void EnsureIsOnStartScreen(IApplicationController controller)

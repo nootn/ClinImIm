@@ -47,12 +47,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ISelectable.cs" />
+    <Compile Include="ImageSelection.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectableImage.cs" />
     <Compile Include="SelectedDrive.cs" />
     <Compile Include="ValidationModel.cs" />
     <Compile Include="Validation\CollectionContainsItemsAttribute.cs" />
+    <Compile Include="Validation\CollectionContainsSelectedItemAttribute.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

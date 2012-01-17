@@ -10,13 +10,13 @@ namespace ClinImIm.Plugin.Example
     /// Interaction logic for ManualEntryPatientSelect.xaml
     /// </summary>
     [Export(typeof(IPatientSelectPlugin))]
-    public partial class ManualEntryPatientSelect : UserControl, IPatientSelectPlugin
+    public partial class ManualEntryPatientSelect : IPatientSelectPlugin
     {
         public ManualEntryPatientSelect()
         {
             InitializeComponent();
-            Model = new Patient { FullName = "asd", Identifier = "123" };
-            this.DataContext = Model;
+            Model = new Patient { FullName = string.Empty, Identifier = string.Empty };
+            DataContext = Model;
         }
 
         public UserControl GetUserControl()
