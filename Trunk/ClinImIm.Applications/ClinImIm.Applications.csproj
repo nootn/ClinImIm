@@ -61,6 +61,7 @@
     <Compile Include="ViewModels\SelectPatientViewModel.cs" />
     <Compile Include="ViewModels\SelectDriveViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\IImageInspectWindow.cs" />
     <Compile Include="Views\ISelectImagesView.cs" />
     <Compile Include="Views\ISelectPatientView.cs" />
     <Compile Include="Views\ISelectDriveView.cs" />
