@@ -8,6 +8,10 @@
              xmlns:PhotoLoader="clr-namespace:PhotoLoader;assembly=PhotoLoader" 
              d:DataContext="{d:DesignInstance vm:SelectImagesViewModel}"
              HorizontalAlignment="Left" VerticalAlignment="Top">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open"
+                        Executed="CommandBinding_Executed" />
+    </UserControl.CommandBindings>
     <Grid Margin="0,0,11,11">
         <ListView VerticalAlignment="Stretch"
                   x:Name="listView"
@@ -52,12 +56,23 @@
                         </Border.Style>
 
                         <Grid>
-                            <CheckBox Grid.ZIndex="1" IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                            <CheckBox Grid.ZIndex="1" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            
                             <Image x:Name="_thumbImage" Grid.ZIndex="0"
                                    PhotoLoader:Loader.DisplayOption="Preview"
                                    PhotoLoader:Loader.Source="{Binding FullPath}"
                                    PhotoLoader:Loader.DisplayWaitingAnimationDuringLoading="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}, Path=DisplayAnimationDuringLoading}"
                                    PhotoLoader:Loader.DisplayErrorThumbnailOnError="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}, Path=DisplayErrorImageOnError}">
+                                <Image.InputBindings>
+                                    <MouseBinding
+                                        Gesture="LeftClick"
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.SelectImage}"
+                                        CommandParameter="{Binding}"/>
+                                    <MouseBinding 
+                                        Gesture="LeftDoubleClick" 
+                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.PreviewImage}"
+                                        CommandParameter="{Binding}"/>
+                                </Image.InputBindings>
                             </Image>
 
                             <Border BorderThickness="2"
