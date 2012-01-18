@@ -76,8 +76,8 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\SystemFileEnumerator.cs" />
     <Compile Include="Infrastructure\WpfDispatcher.cs" />
-    <Compile Include="Views\ImageInspectWindow.xaml.cs">
-      <DependentUpon>ImageInspectWindow.xaml</DependentUpon>
+    <Compile Include="Views\ImageInspectView.xaml.cs">
+      <DependentUpon>ImageInspectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectDriveView.xaml.cs">
       <DependentUpon>SelectDriveView.xaml</DependentUpon>
@@ -103,7 +103,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ImageInspectWindow.xaml">
+    <Page Include="Views\ImageInspectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

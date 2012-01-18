@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -25,6 +26,13 @@ namespace ClinImIm.Presentation.Views
         public SelectImagesView()
         {
             InitializeComponent();
+
+            
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Debugger.Break();
         }
     }
 }
