@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using ClinImIm.Applications.Views;
 
 namespace ClinImIm.Presentation.Views
@@ -13,6 +15,11 @@ namespace ClinImIm.Presentation.Views
         public ImageInspectView()
         {
             InitializeComponent();
+        }
+
+        public Size ImageContainerSize
+        {
+            get { return new Size(imgContainer.ActualWidth, imgContainer.ActualHeight); }
         }
     }
 }
