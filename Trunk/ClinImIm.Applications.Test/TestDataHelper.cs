@@ -83,5 +83,22 @@ namespace ClinImIm.Applications.Test
         }
 
         #endregion
+
+        #region Images To Import Methods
+
+        internal static void MakeImagesToImportValid(ImagesToImport item)
+        {
+            item.Images.Clear();
+            item.Images.Add("C:\test.jpg");
+            Assert.IsTrue(String.IsNullOrWhiteSpace(item.Error));
+        }
+
+        internal static void MakeImagesToImportInvalidNoImages(ImagesToImport item)
+        {
+            item.Images.Clear();
+            Assert.IsTrue(!String.IsNullOrWhiteSpace(item.Error));
+        }
+
+        #endregion
     }
 }

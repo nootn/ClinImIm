@@ -23,6 +23,8 @@ namespace ClinImIm.Applications.Controllers
 
         SelectImagesViewModel CurrentSelectImagesViewModel { get; }
 
+        ImportImagesViewModel CurrentImportImagesViewModel { get; }
+
         bool CanCancel();
 
         void Cancel();
@@ -40,5 +42,7 @@ namespace ClinImIm.Applications.Controllers
         bool IsOnSelectPatientScreen { get; }
 
         bool IsOnSelectImagesScreen { get; }
+
+        bool IsOnImportImagesScreen { get; }
     }
 }

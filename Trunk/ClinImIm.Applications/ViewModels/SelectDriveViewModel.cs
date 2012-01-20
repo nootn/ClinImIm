@@ -11,7 +11,7 @@ using ClinImIm.Domain;
 
 namespace ClinImIm.Applications.ViewModels
 {
-    [Export, PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export]
     public class SelectDriveViewModel : ViewModel<ISelectDriveView>
     {
         //TODO: should be configurable and UI should use same config value

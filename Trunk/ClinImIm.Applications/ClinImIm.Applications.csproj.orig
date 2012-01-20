@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{201AC34E-8998-435C-8DAC-6556B5F4D2FE}</ProjectGuid>
+    <ProjectGuid>{E4C00833-CC71-485F-B473-02564906CF62}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClinImIm.Plugin.Example</RootNamespace>
-    <AssemblyName>ClinImIm.Plugin.Example</AssemblyName>
+    <RootNamespace>ClinImIm.Applications</RootNamespace>
+    <AssemblyName>ClinImIm.Applications</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,6 +37,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -50,38 +51,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultImportImages.xaml.cs">
-      <DependentUpon>DefaultImportImages.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ManualEntryPatientSelect.xaml.cs">
-      <DependentUpon>ManualEntryPatientSelect.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\IApplicationController.cs" />
+    <Compile Include="Core\IDispatcher.cs" />
+    <Compile Include="Core\IFileEnumerator.cs" />
+    <Compile Include="Core\IoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="DefaultImportImages.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ManualEntryPatientSelect.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+<<<<<<< HEAD
+    <Compile Include="ViewModels\ImageInspectViewModel.cs" />
+=======
+    <Compile Include="ViewModels\ImportImagesViewModel.cs" />
+>>>>>>> master
+    <Compile Include="ViewModels\SelectImagesViewModel.cs" />
+    <Compile Include="ViewModels\SelectPatientViewModel.cs" />
+    <Compile Include="ViewModels\SelectDriveViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+<<<<<<< HEAD
+    <Compile Include="Views\IImageInspectView.cs" />
+=======
+    <Compile Include="Views\IImportImagesView.cs" />
+>>>>>>> master
+    <Compile Include="Views\ISelectImagesView.cs" />
+    <Compile Include="Views\ISelectPatientView.cs" />
+    <Compile Include="Views\ISelectDriveView.cs" />
+    <Compile Include="Views\IShellView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClinImIm.Domain\ClinImIm.Domain.csproj">
       <Project>{699A8C57-E5ED-477B-AD47-EA81FD2D10E9}</Project>
       <Name>ClinImIm.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClinImIm.Plugin.Contracts\ClinImIm.Plugin.Contracts.csproj">
-      <Project>{BD442DDF-6280-4562-8ACE-222380FA70F5}</Project>
-      <Name>ClinImIm.Plugin.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>xcopy $(SolutionDir)ClinImIm.Plugin.Example\bin\Debug\*.* $(SolutionDir)ClinImIm.Presentation\bin\Debug\PluginsToLoad /I /Y</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -33,6 +33,7 @@ namespace ClinImIm.Applications.Test.Stories
             CompositionHelper.ComposeContainerWithDefaults(Container);
             CompositionHelper.ComposeMessageServiceImplementation(Container, NSubstitute.Substitute.For<IMessageService>());
             CompositionHelper.ComposeFileEnumeratorImplementation(Container, NSubstitute.Substitute.For<IFileEnumerator>());
+            CompositionHelper.ComposeImportImagesViewImplementation(Container, NSubstitute.Substitute.For<IImportImagesView>());
 
             ApplicationController = Container.GetExportedValue<IApplicationController>();
         }

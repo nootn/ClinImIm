@@ -76,11 +76,13 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\SystemFileEnumerator.cs" />
     <Compile Include="Infrastructure\WpfDispatcher.cs" />
+<<<<<<< HEAD
     <Compile Include="Views\ImageInspectView.xaml.cs">
       <DependentUpon>ImageInspectView.xaml</DependentUpon>
-    </Compile>
+=======
     <Compile Include="Views\ImportImagesView.xaml.cs">
       <DependentUpon>ImportImagesView.xaml</DependentUpon>
+>>>>>>> master
     </Compile>
     <Compile Include="Views\SelectDriveView.xaml.cs">
       <DependentUpon>SelectDriveView.xaml</DependentUpon>
@@ -106,11 +108,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\ImageInspectView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+=======
     <Page Include="Views\ImportImagesView.xaml">
+>>>>>>> master
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

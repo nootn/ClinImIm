@@ -11,7 +11,7 @@ namespace ClinImIm.Presentation.Views
     /// <summary>
     /// Interaction logic for SelectPatientView.xaml
     /// </summary>
-    [Export(typeof(ISelectPatientView)), PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export(typeof(ISelectPatientView))]
     public partial class SelectPatientView : UserControl, ISelectPatientView
     {
         private IPatientSelectPlugin _plugin;
@@ -23,7 +23,7 @@ namespace ClinImIm.Presentation.Views
 
         private void UserControlLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            var catalog = new DirectoryCatalog("PluginsToLoad");
+            var catalog = new DirectoryCatalog(Properties.Resources.PluginDirectory);
             var container = new CompositionContainer(catalog);
             _plugin = container.GetExportedValue<IPatientSelectPlugin>();
 

@@ -14,9 +14,9 @@ namespace ClinImIm.Applications.Test.Stories
     [TestClass]
     [Story(
     AsA = "As a user",
-    IWant = "I want to be able to select images",
-    SoThat = "So that I can delete them, edit them or let the system know which ones I want to import")]
-    public abstract class SelectImagesToDeleteOrEditOrImport
+    IWant = "I want to be able to import selected images",
+    SoThat = "So that I can save them somewhere associated with the patient and possibly clear them off the drive")]
+    public abstract class ImportSelectedImages
     {
         protected CompositionContainer Container;
         protected IApplicationController ApplicationController;
@@ -24,7 +24,7 @@ namespace ClinImIm.Applications.Test.Stories
         [TestMethod]
         public void Execute()
         {
-            this.Bddify<SelectImagesToDeleteOrEditOrImport>();
+            this.Bddify<ImportSelectedImages>();
         }
 
         [TestInitialize]
@@ -34,7 +34,7 @@ namespace ClinImIm.Applications.Test.Stories
             CompositionHelper.ComposeContainerWithDefaults(Container);
             CompositionHelper.ComposeMessageServiceImplementation(Container, GetMessageService());
             CompositionHelper.ComposeFileEnumeratorImplementation(Container, new FileEnumeratorHasMoreThanMaxNumberOfFiles());
-            CompositionHelper.ComposeImportImagesViewImplementation(Container, NSubstitute.Substitute.For<IImportImagesView>());
+            CompositionHelper.ComposeImportImagesViewImplementation(Container, GetImportImagesView());
 
             ApplicationController = Container.GetExportedValue<IApplicationController>();
             ApplicationController.Initialize();
@@ -45,8 +45,13 @@ namespace ClinImIm.Applications.Test.Stories
 
             TestDataHelper.MakePatientValid(ApplicationController.CurrentSelectPatientViewModel.Model);
             TestNavigationHelper.NavigateFromSelectPatientToSelectImages(ApplicationController);
+
+            TestDataHelper.MakeImageSelectionValid(ApplicationController.CurrentSelectImagesViewModel.Model);
+            TestNavigationHelper.NavigateFromSelectImagesToImportImages(ApplicationController);
         }
 
         protected abstract IMessageService GetMessageService();
+
+        protected abstract IImportImagesView GetImportImagesView();
     }
 }
