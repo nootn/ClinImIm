@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ClinImIm.Plugin.Example.DefaultImportImages"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+    <Grid Margin="0,0,11,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Select a destionation and image retention policy" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource HeaderLabel}" Margin="11,11,0,11"/>
+        <Label Content="Destination:" Grid.Row="1" Margin="11,0,0,0" />
+        <TextBox x:Name="Destination" Width="160" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
+        <Label Content="Image retention:" Grid.Row="2" Margin="11,0,0,0" />
+        <CheckBox x:Name="DeleteImages" Grid.Column="1" Grid.Row="2">Delete images from drive</CheckBox>
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Bottom">           
+                This image importer can be replaced.. to build one that fits your purpose,
+        </TextBlock>
+        <TextBlock Grid.Row="4" Grid.ColumnSpan="2">           
+            <Hyperlink NavigateUri="https://github.com/nootn/ClinImIm/wiki" RequestNavigate="HyperlinkRequestNavigate">
+                check out the project page by clicking this link.
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</UserControl>

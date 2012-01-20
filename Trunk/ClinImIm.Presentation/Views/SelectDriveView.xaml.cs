@@ -10,8 +10,8 @@ namespace ClinImIm.Presentation.Views
     /// <summary>
     /// Interaction logic for SelectDriveView.xaml
     /// </summary>
-    [Export(typeof(ISelectDriveView)), PartCreationPolicy(CreationPolicy.NonShared)]
-    public partial class SelectDriveView : UserControl, ISelectDriveView
+    [Export(typeof(ISelectDriveView))]
+    public partial class SelectDriveView : ISelectDriveView
     {
         public SelectDriveView()
         {

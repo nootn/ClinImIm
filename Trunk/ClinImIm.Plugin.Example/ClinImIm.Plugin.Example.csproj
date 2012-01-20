@@ -50,12 +50,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultImportImages.xaml.cs">
+      <DependentUpon>DefaultImportImages.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManualEntryPatientSelect.xaml.cs">
       <DependentUpon>ManualEntryPatientSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DefaultImportImages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ManualEntryPatientSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

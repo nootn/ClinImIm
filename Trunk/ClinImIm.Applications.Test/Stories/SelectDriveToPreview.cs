@@ -4,6 +4,7 @@ using Bddify;
 using Bddify.Core;
 using ClinImIm.Applications.Controllers;
 using ClinImIm.Applications.Core;
+using ClinImIm.Applications.Views;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Waf.Applications.Services;
 
@@ -32,6 +33,7 @@ namespace ClinImIm.Applications.Test.Stories
             CompositionHelper.ComposeContainerWithDefaults(Container);
             CompositionHelper.ComposeMessageServiceImplementation(Container, GetMessageService());
             CompositionHelper.ComposeFileEnumeratorImplementation(Container, GetFileEnumerator());
+            CompositionHelper.ComposeImportImagesViewImplementation(Container, NSubstitute.Substitute.For<IImportImagesView>());
 
             ApplicationController = Container.GetExportedValue<IApplicationController>();
             ApplicationController.Initialize();

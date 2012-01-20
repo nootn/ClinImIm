@@ -61,6 +61,15 @@ namespace ClinImIm.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PluginsToLoad.
+        /// </summary>
+        internal static string PluginDirectory {
+            get {
+                return ResourceManager.GetString("PluginDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown Application Error
         ///
         ///{0}.

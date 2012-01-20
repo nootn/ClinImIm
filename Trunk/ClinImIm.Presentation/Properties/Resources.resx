@@ -123,4 +123,8 @@
 {0}</value>
     <comment>Shown when an unhandled exception is bubbled up to the application</comment>
   </data>
+  <data name="PluginDirectory">
+    <value xml:space="preserve">PluginsToLoad</value>
+    <comment>The directory on the PC (relative to the exe) where the plugin DLL's can be loaded from</comment>
+  </data>
 </root>

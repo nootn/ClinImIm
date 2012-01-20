@@ -19,7 +19,7 @@ namespace ClinImIm.Presentation.Views
     /// <summary>
     /// Interaction logic for SelectImagesView.xaml
     /// </summary>
-    [Export(typeof(ISelectImagesView)), PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export(typeof(ISelectImagesView))]
     public partial class SelectImagesView : UserControl, ISelectImagesView
     {
         public SelectImagesView()

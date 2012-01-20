@@ -10,7 +10,7 @@ using ClinImIm.Domain;
 
 namespace ClinImIm.Applications.ViewModels
 {
-    [Export, PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export]
     public class SelectImagesViewModel : ViewModel<ISelectImagesView>
     {
         private readonly ObservableCollection<string> _warnings = new ObservableCollection<string>();
@@ -32,7 +32,7 @@ namespace ClinImIm.Applications.ViewModels
             _fileEnumerator = fileEnumerator;
         }
 
-        public ImageSelection Model { get { return _model; } set { _model = value; } }
+        public ImageSelection Model { get { return _model; } }
 
         public void Reset()
         {

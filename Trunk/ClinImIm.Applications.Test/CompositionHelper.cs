@@ -45,5 +45,12 @@ namespace ClinImIm.Applications.Test
             batch.AddExportedValue(item);
             container.Compose(batch);
         }
+
+        internal static void ComposeImportImagesViewImplementation(CompositionContainer container, IImportImagesView item)
+        {
+            var batch = new CompositionBatch();
+            batch.AddExportedValue(item);
+            container.Compose(batch);
+        }
     }
 }

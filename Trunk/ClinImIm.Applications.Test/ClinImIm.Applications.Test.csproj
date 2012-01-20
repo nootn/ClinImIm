@@ -65,8 +65,16 @@
     <Compile Include="ApplicationCanStartAndStop\CanBeShutdown.cs" />
     <Compile Include="ApplicationCanStartAndStop\CanBeInitializedThenRunThenShutdown.cs" />
     <Compile Include="CompositionHelper.cs" />
+    <Compile Include="ImportSelectedImages\CancelConfirmNavigatesToStartScreen.cs" />
+    <Compile Include="ImportSelectedImages\CancelNotConfirmDoesNothing.cs" />
+    <Compile Include="ImportSelectedImages\CanGoBack.cs" />
+    <Compile Include="ImportSelectedImages\CannotProgressIfImagesToImportAreInvalid.cs" />
+    <Compile Include="ImportSelectedImages\CannotProgressIfImagesCouldNotBeImported.cs" />
+    <Compile Include="ImportSelectedImages\CanFinishIfImagesToImportAreValidAndImagesCanBeImported.cs" />
+    <Compile Include="Mocks\ImportImagesViewInvalid.cs" />
     <Compile Include="Mocks\FileEnumeratorHasMoreThanMaxNumberOfFiles.cs" />
     <Compile Include="Mocks\FileEnumeratorNoFiles.cs" />
+    <Compile Include="Mocks\ImportImagesViewValid.cs" />
     <Compile Include="Mocks\MessageServiceNegative.cs" />
     <Compile Include="Mocks\MessageServicePositive.cs" />
     <Compile Include="SelectDriveToPreview\CancelNotConfirmDoesNothing.cs" />
@@ -82,6 +90,7 @@
     <Compile Include="SelectPatientToAssociateImagesWith\CanProgressIfPatientIsValid.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CannotProgressIfPatientIsInvalid.cs" />
     <Compile Include="SelectPatientToAssociateImagesWith\CanGoBack.cs" />
+    <Compile Include="Stories\ImportSelectedImages.cs" />
     <Compile Include="Stories\SelectImagesToDeleteOrEditOrImport.cs" />
     <Compile Include="Stories\SelectPatientToAssociateImagesWith.cs" />
     <Compile Include="TestDataHelper.cs" />
