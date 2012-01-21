@@ -19,19 +19,23 @@
             x:Name="imgContainer"
             Grid.RowSpan="3"
             Margin="20"
+            BorderBrush="Blue"
+            BorderThickness="2"
             ClipToBounds="False">
-            <Image 
-                PhotoLoader:Loader.DisplayOption="FullResolution"
-                PhotoLoader:Loader.Source="{Binding ImageSource}"
-                PhotoLoader:Loader.DisplayWaitingAnimationDuringLoading="True"
-                RenderTransformOrigin="0.5, 0.5"
-                Stretch="Uniform">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="{Binding Zoom}" ScaleY="{Binding Zoom}" />
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+            <!--<Canvas>-->
+                <Image 
+                    PhotoLoader:Loader.DisplayOption="FullResolution"
+                    PhotoLoader:Loader.Source="{Binding ImageSource}"
+                    PhotoLoader:Loader.DisplayWaitingAnimationDuringLoading="True"
+                    RenderTransformOrigin="0.5, 0.5"
+                    Stretch="Uniform">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="{Binding ActualZoom}" ScaleY="{Binding ActualZoom}" />
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            <!--</Canvas>-->
         </Border>
         
         <!--<ScrollViewer
@@ -78,6 +82,12 @@
                 LargeChange="1"
                 TickFrequency="0.1"
                 Width="200" />
+            <Border Background="White" Width="200">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Zoom}" />
+                    <TextBlock Text="{Binding ActualZoom}" />
+                </StackPanel>
+            </Border>
         </StackPanel>
     </Grid>
 </Window>

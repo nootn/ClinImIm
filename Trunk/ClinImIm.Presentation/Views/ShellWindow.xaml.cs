@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
+using ClinImIm.Applications.Core;
 using ClinImIm.Applications.Views;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ using System.Linq;
 
 namespace ClinImIm.Presentation.Views
 {
-    [Export(typeof(IShellView))]
-    public partial class ShellWindow : Window, IShellView
+    [Export(typeof(IShellView)), Export(typeof(IMainWindowProvider))]
+    public partial class ShellWindow : Window, IShellView, IMainWindowProvider
     {
         private readonly Lazy<ShellViewModel> _viewModel;
         private readonly List<Tuple<object, ValidationError>> errors = new List<Tuple<object, ValidationError>>();
@@ -68,6 +69,11 @@ namespace ClinImIm.Presentation.Views
             }
 
             ViewModel.IsValid = !errors.Any();
+        }
+
+        public Window Window
+        {
+            get { return this; }
         }
     }
 }

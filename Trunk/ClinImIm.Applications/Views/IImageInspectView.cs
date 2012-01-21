@@ -9,5 +9,6 @@ namespace ClinImIm.Applications.Views
         void Hide();
 
         Size ImageContainerSize { get; }
+        Window Owner { get; set; }
     }
 }

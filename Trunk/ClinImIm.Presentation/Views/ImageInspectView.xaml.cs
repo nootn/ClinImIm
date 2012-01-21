@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using ClinImIm.Applications.Core;
 using ClinImIm.Applications.Views;
 
 namespace ClinImIm.Presentation.Views
@@ -12,6 +13,7 @@ namespace ClinImIm.Presentation.Views
     [Export(typeof(IImageInspectView))]
     public partial class ImageInspectView : Window, IImageInspectView
     {
+        [ImportingConstructor]
         public ImageInspectView()
         {
             InitializeComponent();
