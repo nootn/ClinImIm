@@ -19,42 +19,24 @@
             x:Name="imgContainer"
             Grid.RowSpan="3"
             Margin="20"
-            BorderBrush="Blue"
+            BorderBrush="Blue" 
             BorderThickness="2"
-            ClipToBounds="False">
-            <!--<Canvas>-->
-                <Image 
-                    PhotoLoader:Loader.DisplayOption="FullResolution"
-                    PhotoLoader:Loader.Source="{Binding ImageSource}"
-                    PhotoLoader:Loader.DisplayWaitingAnimationDuringLoading="True"
-                    RenderTransformOrigin="0.5, 0.5"
-                    Stretch="Uniform">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="{Binding ActualZoom}" ScaleY="{Binding ActualZoom}" />
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-            <!--</Canvas>-->
-        </Border>
-        
-        <!--<ScrollViewer
-            Grid.RowSpan="3"
-            HorizontalScrollBarVisibility="Auto"
-            VerticalScrollBarVisibility="Auto">
+            ClipToBounds="True">
             <Image 
+                x:Name="img"
                 PhotoLoader:Loader.DisplayOption="FullResolution"
                 PhotoLoader:Loader.Source="{Binding ImageSource}"
                 PhotoLoader:Loader.DisplayWaitingAnimationDuringLoading="True"
                 RenderTransformOrigin="0.5, 0.5"
-                Stretch="None">
+                Stretch="Uniform">
                 <Image.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="{Binding Zoom}" ScaleY="{Binding Zoom}" />
+                        <ScaleTransform ScaleX="{Binding RenderZoom}" ScaleY="{Binding RenderZoom}" />
+                        <TranslateTransform X="{Binding TranslateX}" Y="{Binding TranslateY}" />
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-        </ScrollViewer>-->
+        </Border>
 
         <StackPanel
             Grid.Row="0"
@@ -75,17 +57,17 @@
             <Slider
                 Orientation="Horizontal"
                 VerticalAlignment="Center"
-                Minimum="0.5"
-                Maximum="3"
+                Minimum="{Binding MinZoom}"
+                Maximum="{Binding MaxZoom}"
                 Value="{Binding Zoom, Mode=TwoWay}"
                 SmallChange="0.1"
                 LargeChange="1"
                 TickFrequency="0.1"
                 Width="200" />
             <Border Background="White" Width="200">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Zoom}" />
-                    <TextBlock Text="{Binding ActualZoom}" />
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Zoom, StringFormat=Zoom: {0:0.00}}" />
+                    <TextBlock Text="{Binding RenderZoom, StringFormat=Render Zoom: {0:0.00}}" />
                 </StackPanel>
             </Border>
         </StackPanel>

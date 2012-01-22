@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Waf.Applications;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ClinImIm.Applications.Core;
@@ -12,8 +13,6 @@ namespace ClinImIm.Applications.ViewModels
     [Export, PartCreationPolicy(CreationPolicy.NonShared)]
     public class ImageInspectViewModel : ViewModel<IImageInspectView>
     {
-        private const double FixedDpi = 96;
-
         private readonly IImageInspectView _view;
         private readonly IMainWindowProvider _mainWindowProvider;
         private ImageInspection _model;
@@ -21,6 +20,9 @@ namespace ClinImIm.Applications.ViewModels
         private readonly ICommand _setZoom;
         private double _zoom;
         private BitmapImage _imageSource;
+        private double _minZoom;
+        private double _maxZoom;
+        private Vector _displacement;
 
         [ImportingConstructor]
         public ImageInspectViewModel(IImageInspectView view, IMainWindowProvider mainWindowProvider)
@@ -44,6 +46,8 @@ namespace ClinImIm.Applications.ViewModels
                             SetZoomToFit();
                         }
                     });
+            _minZoom = 0.125;
+            _maxZoom = 3.0;
         }
 
         public ImageInspection Model
@@ -55,26 +59,42 @@ namespace ClinImIm.Applications.ViewModels
                 {
                     _model = value;
                     _imageSource = new BitmapImage(new Uri(_model.FullPath, UriKind.Relative));
-                    SetZoomToFit();
+                    SetZoomToDefault();
                     RaisePropertyChanged("Model");
                     RaisePropertyChanged("ImageSource");
                 }
             }
         }
 
-        private void SetZoomToFit()
+        /// <summary>
+        /// Sets the default zoom for the current image. Default is "Fit" if the image is larger than
+        /// the available space, otherwise "1:1".
+        /// </summary>
+        private void SetZoomToDefault()
         {
-            var size = _view.ImageContainerSize;
-            var widthScale = size.Width/_imageSource.PixelWidth;
-            var heightScale = size.Height/_imageSource.PixelHeight;
-
-            var zoomFactor = Math.Min(widthScale, heightScale);
-            _zoom = zoomFactor;
-            RaisePropertyChanged("Zoom");
-            RaisePropertyChanged("ActualZoom");
+            SetZoomInternal(Math.Min(GetFitRatio(), 1.0));
         }
 
-        private double GetFitFactor()
+        /// <summary>
+        /// Sets the zoom factor to fit the image to the available size. RenderZoom should be 1 when image is set to fit
+        /// (this assumes that the Image control has Stretch="Uniform"), and Zoom will show the image's zoom factor based
+        /// on its PixelWidth and PixelHeight
+        /// </summary>
+        private void SetZoomToFit()
+        {
+            SetZoomInternal(GetFitRatio());
+        }
+        
+        /// <summary>
+        /// Uses the image's PixelWidth and PixelHeight to get a value indicating how much the image is "zoomed"
+        /// when it is set to fit the available space (it assumes the Image control housing it is set to Stretch="Uniform").
+        /// This allows the image's "real" zoom value to be monitored and adjusted by the user, but a translated value to be
+        /// applied to the Image's ScaleTransform. This helps get around WPF drawing the image at different sizes based on its
+        /// DPI metadata. It also ensures the image is always fully rendered by using Stretch="Uniform", but allows scaling to
+        /// still be accurate
+        /// </summary>
+        /// <returns>Image's "actual" zoom value (based on PixelWidth and Height) when it is scaled to fit the container</returns>
+        private double GetFitRatio()
         {
             if (_imageSource == null) return 1.0;
 
@@ -90,8 +110,7 @@ namespace ClinImIm.Applications.ViewModels
 
         private double TranslateZoomToActualZoom(double zoom)
         {
-            return zoom/GetFitFactor();
-            //return _imageSource == null ? 0 : _imageSource.DpiX*zoom/FixedDpi;
+            return zoom/GetFitRatio();
         }
 
         public BitmapImage ImageSource
@@ -99,28 +118,81 @@ namespace ClinImIm.Applications.ViewModels
             get { return _imageSource; }
         }
 
+        /// <summary>
+        /// Zoom factor of the image. Setting value is clamped between MinZoom and MaxZoom
+        /// </summary>
         public double Zoom
         {
             get { return _zoom; }
             set
             {
-                value = Math.Max(0.5d, Math.Min(3.0d, value));
-                _zoom = value;
-                RaisePropertyChanged("Zoom");
-                RaisePropertyChanged("ActualZoom");
+                value = Math.Max(MinZoom, Math.Min(MaxZoom, value));
+                SetZoomInternal(value);
             }
         }
 
-        public double ActualZoom
+        private void SetZoomInternal(double zoom)
+        {
+            _zoom = zoom;
+            RaisePropertyChanged("Zoom");
+            RaisePropertyChanged("RenderZoom");
+        }
+
+        /// <summary>
+        /// Value to apply to ScaleTransform to render the image at the value specified in Zoom.
+        /// This assumes that Image control hosting image has Streth="Uniform"
+        /// </summary>
+        public double RenderZoom
         {
             get { return TranslateZoomToActualZoom(_zoom); }
+        }
+
+        public double MaxZoom
+        {
+            get { return _maxZoom; }
+            set
+            {
+                if (value > _minZoom)
+                {
+                    _maxZoom = value;
+                    RaisePropertyChanged("MaxZoom");
+                }
+            }
+        }
+
+        public double MinZoom
+        {
+            get { return _minZoom; }
+            set
+            {
+                if (value < _maxZoom)
+                {
+                    _minZoom = value;
+                    RaisePropertyChanged("MinZoom");
+                }
+            }
+        }
+
+        public bool CanTranslateImage
+        {
+            get { return _zoom > GetFitRatio(); }
+        }
+
+        public double TranslateX
+        {
+            get { return _displacement.X; }
+        }
+
+        public double TranslateY
+        {
+            get { return _displacement.Y; }
         }
 
         public void ShowView()
         {
             _view.Show();
             _view.Owner = _mainWindowProvider.Window;
-            SetZoomToFit();
+            SetZoomToDefault();
         }
 
         public ICommand Close
@@ -131,6 +203,16 @@ namespace ClinImIm.Applications.ViewModels
         public ICommand SetZoom
         {
             get { return _setZoom; }
+        }
+
+        public void TranslateImage(Vector displacement)
+        {
+            if (!CanTranslateImage)
+                return;
+
+            _displacement = -displacement;
+            RaisePropertyChanged("TranslateX");
+            RaisePropertyChanged("TranslateY");
         }
     }
 }
