@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
 using ClinImIm.Domain.Validation;
 
 namespace ClinImIm.Domain

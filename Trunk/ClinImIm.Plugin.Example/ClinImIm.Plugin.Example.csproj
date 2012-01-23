@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -53,10 +56,12 @@
     <Compile Include="DefaultImportImages.xaml.cs">
       <DependentUpon>DefaultImportImages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\ImportDetails.cs" />
     <Compile Include="ManualEntryPatientSelect.xaml.cs">
       <DependentUpon>ManualEntryPatientSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DefaultImportImagesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="DefaultImportImages.xaml">
@@ -77,6 +82,9 @@
       <Project>{BD442DDF-6280-4562-8ACE-222380FA70F5}</Project>
       <Name>ClinImIm.Plugin.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

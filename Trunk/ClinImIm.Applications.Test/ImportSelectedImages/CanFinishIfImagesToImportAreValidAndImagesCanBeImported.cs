@@ -27,6 +27,7 @@ namespace ClinImIm.Applications.Test.ImportSelectedImages
             ApplicationController.Next();
 
             Assert.IsTrue(!_messageService.ShowErrorWasCalled);
+            Assert.IsTrue(_messageService.ShowMessageWasCalled);
             Assert.IsTrue(_importImagesViewValid.TryImportHasBeenCalled);
             TestNavigationHelper.EnsureIsOnStartScreen(ApplicationController);
         }

@@ -12,6 +12,7 @@ namespace ClinImIm.Applications.Test.Mocks
 
         public void ShowMessage(object owner, string message)
         {
+            ShowMessageWasCalled = true;
         }
 
         public bool? ShowQuestion(object owner, string message)
@@ -29,5 +30,7 @@ namespace ClinImIm.Applications.Test.Mocks
         }
 
         public bool ShowErrorWasCalled { get; private set; }
+
+        public bool ShowMessageWasCalled { get; private set; }
     }
 }

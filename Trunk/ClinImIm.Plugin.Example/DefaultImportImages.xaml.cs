@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Windows.Controls;
 using ClinImIm.Domain;
 using ClinImIm.Plugin.Contracts;
+using ClinImIm.Plugin.Example.Domain;
+using ClinImIm.Plugin.Example.ViewModels;
 
 namespace ClinImIm.Plugin.Example
 {
@@ -13,10 +16,15 @@ namespace ClinImIm.Plugin.Example
     [Export(typeof(IImportImagesPlugin))]
     public partial class DefaultImportImages : IImportImagesPlugin
     {
+        private readonly DefaultImportImagesViewModel _viewModel;
+
         [ImportingConstructor]
         public DefaultImportImages()
         {
             InitializeComponent();
+
+            _viewModel = new DefaultImportImagesViewModel(new ImportDetails());
+            DataContext = _viewModel;
         }
 
         public UserControl GetUserControl()
@@ -32,12 +40,7 @@ namespace ClinImIm.Plugin.Example
 
         public IEnumerable<string> TryImport(ImagesToImport model)
         {
-            var errorMessages = new List<string>();
-
-            //If you don't add an error, it is "successful"
-            errorMessages.Add("We need to now implement this example way of importing images!");
-
-            return errorMessages;
+            return _viewModel.TryImport(model);
         }
     }
 }

@@ -170,6 +170,7 @@ namespace ClinImIm.Applications.Controllers
                     {
                         _importImagesViewModel.Model.Images.Add(currImage.FullPath);
                     }
+                    _importImagesViewModel.Model.PatientImagesAreOf = _selectPatientViewModel.Model;
                     _shellViewModel.ContentView = _importImagesViewModel.View;
                 }
             }
@@ -186,6 +187,7 @@ namespace ClinImIm.Applications.Controllers
                     }
                     else
                     {
+                        _messageService.ShowMessage("Success! The images have been imported.");
                         ResetState();
                     }
                 }

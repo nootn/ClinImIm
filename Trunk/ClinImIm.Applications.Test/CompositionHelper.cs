@@ -29,6 +29,8 @@ namespace ClinImIm.Applications.Test
             batch.AddExportedValue(Substitute.For<ISelectDriveView>());
             batch.AddExportedValue(Substitute.For<ISelectPatientView>());
             batch.AddExportedValue(Substitute.For<ISelectImagesView>());
+            batch.AddExportedValue(Substitute.For<IImageInspectView>());
+            batch.AddExportedValue(Substitute.For<IMainWindowProvider>());
             container.Compose(batch);
         }
 

@@ -10,6 +10,8 @@ using System.Windows;
 using System.Windows.Threading;
 using ClinImIm.Applications.Controllers;
 using ClinImIm.Domain;
+using log4net;
+using log4net.Config;
 
 namespace ClinImIm.Presentation
 {
@@ -20,7 +22,7 @@ namespace ClinImIm.Presentation
     {
         private CompositionContainer _container;
         private IApplicationController _controller;
-
+        private static readonly ILog _log = LogManager.GetLogger(typeof(App));
 
         static App()
         {
@@ -40,6 +42,8 @@ namespace ClinImIm.Presentation
             DispatcherUnhandledException += AppDispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += AppDomainUnhandledException;
 #endif
+            XmlConfigurator.Configure();
+            _log.Debug("OnStartup called");
 
             var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(Controller).Assembly));
@@ -67,12 +71,14 @@ namespace ClinImIm.Presentation
 
         private void AppDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+            _log.ErrorFormat("AppDispatcherUnhandledException: {0}", e);
             HandleException(e.Exception, false);
             e.Handled = true;
         }
 
         private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            _log.ErrorFormat("AppDomainUnhandledException: {0}", e);
             HandleException(e.ExceptionObject as Exception, e.IsTerminating);
         }
 
@@ -80,7 +86,7 @@ namespace ClinImIm.Presentation
         {
             if (e == null) { return; }
 
-            Trace.TraceError(e.ToString());
+            _log.ErrorFormat("HandleException: IsTerminating:{0} Exception: {1}", isTerminating, e);
 
             if (!isTerminating)
             {
