@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="360" /> <!-- TODO: it would be nice if this stretched horizontally like it does vertically -->
+            <ColumnDefinition Width="*" /> <!-- TODO: it would be nice if this stretched horizontally like it does vertically -->
         </Grid.ColumnDefinitions>
         <Label Content="Drive selection and preview" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource HeaderLabel}" Margin="11,11,0,11"/>
         <Label Content="Select drive:" Grid.Row="1" Margin="11,0,0,0" />
@@ -29,13 +29,15 @@
         <ListView Grid.Column="1"
                   Grid.Row="2"
                   VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
                   x:Name="listView"
                   SelectionMode="Single"
-                  ItemsSource="{Binding Path=Model.PhotoFiles, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=false, ValidatesOnDataErrors=false, NotifyOnValidationError=false}">
+                  ItemsSource="{Binding Path=Model.PhotoFiles, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=false, ValidatesOnDataErrors=false, NotifyOnValidationError=false}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"/>
+                    <WrapPanel />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
 
