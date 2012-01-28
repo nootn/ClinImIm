@@ -22,7 +22,7 @@ namespace ClinImIm.Applications.ViewModels
         private BitmapImage _imageSource;
         private double _minZoom;
         private double _maxZoom;
-        private Vector _displacement;
+        private Vector _origin;
 
         [ImportingConstructor]
         public ImageInspectViewModel(IImageInspectView view, IMainWindowProvider mainWindowProvider)
@@ -133,9 +133,24 @@ namespace ClinImIm.Applications.ViewModels
 
         private void SetZoomInternal(double zoom)
         {
+            var renderPrev = RenderZoom;
             _zoom = zoom;
+            var renderNew = RenderZoom;
+            if (renderNew > 1)
+            {
+                var normalised = _origin/renderPrev;
+                var centerFactor = Math.Min(renderNew - 1, 1);
+                _origin = normalised*renderNew*centerFactor;
+            }
+            else
+            {
+                _origin = new Vector(0, 0);
+            }
+            
             RaisePropertyChanged("Zoom");
             RaisePropertyChanged("RenderZoom");
+            RaisePropertyChanged("TranslateX");
+            RaisePropertyChanged("TranslateY");
         }
 
         /// <summary>
@@ -180,12 +195,12 @@ namespace ClinImIm.Applications.ViewModels
 
         public double TranslateX
         {
-            get { return _displacement.X; }
+            get { return _origin.X; }
         }
 
         public double TranslateY
         {
-            get { return _displacement.Y; }
+            get { return _origin.Y; }
         }
 
         public void ShowView()
@@ -210,7 +225,24 @@ namespace ClinImIm.Applications.ViewModels
             if (!CanTranslateImage)
                 return;
 
-            _displacement = -displacement;
+            _origin -= displacement;
+
+            var scaledPixelDimensions = new Vector(
+                x: _imageSource.PixelWidth*_zoom,
+                y: _imageSource.PixelHeight*_zoom);
+
+            var margin = new Vector(
+                x: Math.Max(_view.ImageContainerSize.Width - scaledPixelDimensions.X, 0),
+                y: Math.Max(_view.ImageContainerSize.Height - scaledPixelDimensions.Y, 0));
+
+            var bounds = new Vector(
+                x: (scaledPixelDimensions.X - _view.ImageContainerSize.Width + margin.X) / 2,
+                y: (scaledPixelDimensions.Y - _view.ImageContainerSize.Height + margin.Y) / 2);
+
+            _origin = new Vector(
+                x: Math.Min(Math.Max(_origin.X, -bounds.X), bounds.X),
+                y: Math.Min(Math.Max(_origin.Y, -bounds.Y), bounds.Y));
+
             RaisePropertyChanged("TranslateX");
             RaisePropertyChanged("TranslateY");
         }
