@@ -35,7 +35,7 @@ namespace ClinImIm.Presentation.Views
         {
             if (img.IsMouseCaptured)
             {
-                var disp = _imgTranslateStart - e.GetPosition(imgContainer);
+                var disp = _imgTranslateStart - e.GetPosition(img);
                 _viewModel.Value.TranslateImage(disp);
             }
         }
@@ -50,7 +50,7 @@ namespace ClinImIm.Presentation.Views
             if (!_viewModel.Value.CanTranslateImage)
                 return;
 
-            _imgTranslateStart = e.GetPosition(imgContainer);
+            _imgTranslateStart = e.GetPosition(img);
             img.CaptureMouse();
         }
 
