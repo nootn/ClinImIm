@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bddify">
-      <HintPath>..\packages\Bddify.1.11\lib\NET40\Bddify.dll</HintPath>
+    <Reference Include="Bddify, Version=1.18.0.0, Culture=neutral, PublicKeyToken=d538bbfef9a5dfcc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Bddify.1.18\lib\NET40\Bddify.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
@@ -106,9 +107,6 @@
     <Compile Include="Stories\SelectDriveToPreview.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Bddify.ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +119,9 @@
       <Name>ClinImIm.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Bddify.ReadMe.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
